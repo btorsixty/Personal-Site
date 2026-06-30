@@ -42,7 +42,7 @@ const fmt = (d) => new Date(d).toLocaleDateString('en-US', { month: 'short', yea
   <main class="wrap list">
     {posts.map((p) => (
       <a
-        href={'/' + p.data.section + '/' + p.id}
+        href={'/' + p.data.section + '/' + p.id.split('/').pop()}
         class="entry reveal"
         data-tag={p.data.category || ''}
         data-year={String(new Date(p.data.date).getFullYear())}
