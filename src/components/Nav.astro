@@ -1,0 +1,11 @@
+---
+const { active = '' } = Astro.props;
+---
+<nav class="nav glass">
+  <a href="/" class="brand">Ben L Torres</a>
+  <div class="nav-links">
+    <a href="/#professional" class={active === 'professional' ? 'active' : ''}>Professional</a>
+    <a href="/#personal" class={active === 'personal' ? 'active' : ''}>Personal</a>
+    <a href="/#contact" class="cta">Get in touch</a>
+  </div>
+</nav>

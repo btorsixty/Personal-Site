@@ -1,0 +1,50 @@
+---
+import BaseLayout from './BaseLayout.astro';
+const { title, description = '', section, category, date } = Astro.props;
+const domainMap = { 'longform': 'Professional', 'short-articles': 'Professional', 'collaborations': 'Professional', 'musings': 'Personal' };
+const sectionTitle = { 'longform': 'Longform', 'short-articles': 'Short Articles', 'collaborations': 'Collaborations', 'musings': 'Musings' };
+const domain = domainMap[section] || 'Professional';
+const domainHref = domain === 'Personal' ? '/#personal' : '/#professional';
+const active = domain === 'Personal' ? 'personal' : 'professional';
+const dateStr = date ? new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : '';
+---
+<BaseLayout title={title} description={description} active={active} bodyClass="reading">
+  <div class="progress" id="progress"></div>
+  <article>
+    <header class="article article-head reveal">
+      <div class="crumb">
+        <a href="/">Home</a><span class="sep">/</span>
+        <a href={domainHref}>{domain}</a><span class="sep">/</span>
+        <a href={'/' + section}>{sectionTitle[section]}</a>
+      </div>
+      <div class="article-meta">
+        {category && (
+          <Fragment>
+            <span class="cat">{category}</span><span class="dot">/</span>
+          </Fragment>
+        )}
+        <span>{dateStr}</span>
+      </div>
+      <h1>{title}</h1>
+      {description && <p class="dek">{description}</p>}
+    </header>
+    <div class="article prose">
+      <slot />
+    </div>
+  </article>
+  <div class="article-foot">
+    <a href={'/' + section} class="back">&larr; All {sectionTitle[section]}</a>
+    <p class="sig">Written by Ben L Torres.</p>
+  </div>
+  <script>
+    const prog = document.getElementById('progress');
+    function upd() {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      prog.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    addEventListener('scroll', upd, { passive: true });
+    addEventListener('resize', upd);
+    upd();
+  </script>
+</BaseLayout>

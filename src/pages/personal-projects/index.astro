@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const all = await getCollection('projects', ({ data }) => !data.draft);
+const projects = all
+  .filter((p) => p.data.domain === 'personal')
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const yr = (d) => new Date(d).getFullYear();
+---
+<BaseLayout title="Personal Projects \u2014 Ben L Torres" description="Projects I'm working on, digital and irl." active="personal">
+  <header class="wrap page-head reveal">
+    <div class="crumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/#personal">Personal</a><span class="sep">/</span>
+      <span class="here">Personal Projects</span>
+    </div>
+    <h1>Personal Projects</h1>
+    <p class="intro">Projects that I'm working on, both digital and irl. Could be a github link, could be my yard, who knows.</p>
+  </header>
+  <main class="wrap list">
+    {projects.map((p) => (
+      <a
+        href={p.data.link || p.data.repo || '#'}
+        class="entry reveal"
+        target={(p.data.link || p.data.repo) ? '_blank' : null}
+        rel="noopener"
+        data-year={String(yr(p.data.date))}
+      >
+        <span class="date">{yr(p.data.date)}</span>
+        <div class="body">
+          <h2>{p.data.title}</h2>
+          <p>{p.data.description}</p>
+        </div>
+        {p.data.kind && <span class="etag">{p.data.kind}</span>}
+      </a>
+    ))}
+  </main>
+</BaseLayout>

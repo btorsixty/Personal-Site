@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FilterBar from '../../components/FilterBar.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const sections = [
+    { slug: 'longform', title: 'Longform', domain: 'Professional', intro: 'Case studies, Opinion Papers, Deep Research.' },
+    { slug: 'short-articles', title: 'Short Articles', domain: 'Professional', intro: 'Small subject hits, Tips, Quick Guides.' },
+    { slug: 'collaborations', title: 'Collaborations', domain: 'Professional', intro: 'Pieces, Interviews, Builds with Industry Friends and Experts.' },
+    { slug: 'musings', title: 'Musings', domain: 'Personal', intro: "Short posts, longform pieces on things that interest me, and a few Told Ya So's here and there." },
+  ];
+  const all = await getCollection('posts', ({ data }) => !data.draft);
+  return sections.map((s) => {
+    const posts = all
+      .filter((p) => p.data.section === s.slug)
+      .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+    return { params: { section: s.slug }, props: { ...s, posts } };
+  });
+}
+
+const { title, domain, intro, posts } = Astro.props;
+const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean))];
+const years = [...new Set(posts.map((p) => new Date(p.data.date).getFullYear()))].sort((a, b) => b - a);
+const domainHref = domain === 'Personal' ? '/#personal' : '/#professional';
+const active = domain === 'Personal' ? 'personal' : 'professional';
+const fmt = (d) => new Date(d).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+---
+<BaseLayout title={title + ' \u2014 Ben L Torres'} description={intro} active={active}>
+  <header class="wrap page-head reveal">
+    <div class="crumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href={domainHref}>{domain}</a><span class="sep">/</span>
+      <span class="here">{title}</span>
+    </div>
+    <h1>{title}</h1>
+    <p class="intro">{intro}</p>
+  </header>
+
+  <FilterBar categories={categories} years={years} />
+
+  <main class="wrap list">
+    {posts.map((p) => (
+      <a
+        href={'/' + p.data.section + '/' + p.slug}
+        class="entry reveal"
+        data-tag={p.data.category || ''}
+        data-year={String(new Date(p.data.date).getFullYear())}
+      >
+        <span class="date">{fmt(p.data.date)}</span>
+        <div class="body">
+          <h2>{p.data.title}</h2>
+          {p.data.dek && <p>{p.data.dek}</p>}
+        </div>
+        {p.data.category && <span class="etag">{p.data.category}</span>}
+      </a>
+    ))}
+  </main>
+</BaseLayout>

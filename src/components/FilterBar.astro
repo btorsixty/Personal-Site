@@ -1,0 +1,45 @@
+---
+const { categories = [], years = [] } = Astro.props;
+---
+<div class="wrap filters reveal">
+  {categories.length > 0 && (
+    <div class="filter-group">
+      <span class="glabel">Category</span>
+      <button class="chip-btn active" data-type="cat" data-value="all">All</button>
+      {categories.map((c) => (
+        <button class="chip-btn" data-type="cat" data-value={c}>{c}</button>
+      ))}
+    </div>
+  )}
+  <div class="filter-group">
+    <span class="glabel">Year</span>
+    <button class="chip-btn yr active" data-type="year" data-value="all">All</button>
+    {years.map((y) => (
+      <button class="chip-btn yr" data-type="year" data-value={String(y)}>{y}</button>
+    ))}
+  </div>
+</div>
+<script>
+  const entryEls = [...document.querySelectorAll('.entry')];
+  let activeCat = 'all', activeYear = 'all';
+  function applyFilters(force) {
+    entryEls.forEach((en) => {
+      const show =
+        (activeCat === 'all' || en.dataset.tag === activeCat) &&
+        (activeYear === 'all' || en.dataset.year === activeYear);
+      en.style.display = show ? '' : 'none';
+      if (show && force) en.classList.add('in');
+    });
+  }
+  document.querySelectorAll('.chip-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const t = btn.dataset.type;
+      document.querySelectorAll('.chip-btn[data-type="' + t + '"]').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (t === 'cat') activeCat = btn.dataset.value;
+      else activeYear = btn.dataset.value;
+      applyFilters(true);
+    });
+  });
+  applyFilters(false);
+</script>

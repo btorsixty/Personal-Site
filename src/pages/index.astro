@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Ben L Torres — GRC, Builder, Cultural Vagabond"
+  description="The personal hub of Ben L Torres. Compliance done with care, the tools I build, and whatever side project has my attention."
+>
+  <header class="wrap" id="top">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">GRC / Builder / Cultural Vagabond</p>
+        <h1>Decades of <em>life</em> experience<br />A decade of <em>GRC</em> experience<br />A few years of <em>Pickleball</em><br />Rookie season of <em>Fatherhood</em></h1>
+        <div class="connect">
+          <a href="/Ben-Torres-Resume.pdf" target="_blank" rel="noopener" class="ibtn resume">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+            Résumé
+          </a>
+          <a href="https://www.linkedin.com/in/benltorres/" target="_blank" rel="noopener" class="ibtn li">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21h-4z"/></svg>
+            LinkedIn
+          </a>
+          <span class="ibtn slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            Coming soon
+          </span>
+        </div>
+      </div>
+      <div class="portrait glass">
+        <div class="ring"></div>
+        <span class="initials">BLT</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap bio reveal" id="intro">
+      <p><strong>Hi, I'm Ben.</strong> Professionally, I'm an Information Systems Auditor and GRC implementation specialist by trade, and perpetual tinkerer by instinct. I enjoy writing about compliance done right in an era where it's preferred to be done fast, as well as pieces about the world around me. If I'm not writing or working - you can find me doing one of a few things:</p>
+      <ul class="bio-list">
+        <li>Learning the ropes of being a girl dad</li>
+        <li>doing my best to get to a 5.0 level pickleball player</li>
+        <li>Building the <a href="https://spaceweaselspb.com" target="_blank" rel="noopener">Space Weasels</a> brand</li>
+        <li>Building tools to bring ideas to life</li>
+        <li>playing Billy Joel on the piano.</li>
+      </ul>
+      <p>This is my hub for everything I'm thinking or working on. Compliance as a Code build outs that I find useful, side projects that I've probably put more time into than I should've, or just general musings that need a home. Feel free to send letters to the editor at <a href="mailto:benltorres60@gmail.com">benltorres60@gmail.com</a>. It's me though, I'm the editor.</p>
+      <div class="actions">
+        <a href="#professional" class="btn primary">Explore the work →</a>
+        <a href="#personal" class="btn ghost">The personal side</a>
+      </div>
+    </section>
+
+    <section class="domain pro wrap" id="professional">
+      <div class="domain-head reveal">
+        <div class="label">Professional</div>
+        <h2>GRC, Done with care.</h2>
+      </div>
+
+      <div class="cat-grid">
+        <a href="/longform" class="cat glass reveal">
+          <h3>Longform</h3>
+          <p>Case studies, Opinion Papers, Deep Research</p>
+        </a>
+        <a href="/short-articles" class="cat glass reveal">
+          <h3>Short Articles</h3>
+          <p>Small subject hits, Tips, Quick Guides</p>
+        </a>
+        <a href="/collaborations" class="cat glass reveal">
+          <h3>Collaborations</h3>
+          <p>Pieces, Interviews, Builds with Industry Friends and Experts</p>
+        </a>
+      </div>
+
+      <a href="/projects" class="cac glass reveal">
+        <h3>Projects</h3>
+        <p class="cac-sub">Terraform Builds, control modules, compliance you can apply.</p>
+      </a>
+    </section>
+
+    <section class="domain personal wrap" id="personal">
+      <div class="domain-head reveal">
+        <div class="label">Personal</div>
+        <h2>Off the clock</h2>
+        <p>Personal musings, projects, life lessons learned and subsequently forgotten.</p>
+      </div>
+
+      <div class="cat-grid">
+        <a href="/musings" class="cat glass reveal">
+          <h3>Musings</h3>
+          <p>Short posts, longform pieces on things that interest me, and a few Told Ya So's here and there.</p>
+        </a>
+        <a href="/personal-projects" class="cat glass reveal">
+          <h3>Personal Projects</h3>
+          <p>Projects that I'm working on, both digital and irl. Could be a github link, could be my yard, who knows.</p>
+        </a>
+        <a href="/about" class="cat glass reveal">
+          <h3>About Me</h3>
+          <p>The longer story that nobody asked for.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
