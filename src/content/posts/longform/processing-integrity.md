@@ -80,7 +80,28 @@ What separates a check-the-box implementation from one that actually works is sp
 
 To put that in perspective, here's Meridian's PI 1.2 (input controls) written two ways. First as a minimal generic implementation, then as the version that represents their service.
 
-<!-- TODO (Ben): the side-by-side comparison of Meridian's PI 1.2 control (generic vs. service-specific) was a table/graphic in the PDF and did not extract as text. Send me the two versions and I'll drop them in here as a native comparison. -->
+<div class="pi-compare">
+  <div class="pi-compare__head">
+    <span class="pi-compare__org">Meridian Sensor Systems</span>
+    <span class="pi-compare__tag">Comparison · PI 1.2</span>
+  </div>
+  <p class="pi-compare__intro">Same organization, same criteria, same system. Two very different ways to represent it in a SOC II report:</p>
+  <div class="pi-compare__grid">
+    <div class="pi-compare__col">
+      <span class="pi-compare__label weak">Check-the-box</span>
+      <p class="pi-compare__control"><strong>Control:</strong> The organization validates data inputs for completeness and accuracy prior to processing.</p>
+      <div class="pi-compare__quote">"System inputs are validated against predefined rules. Invalid inputs are rejected and logged. Input sources are authorized and documented."</div>
+      <p class="pi-compare__note">Technically accurate. Meets the criteria. But a reader walks away knowing nothing about <em>what</em> data is validated, <em>what</em> rules apply, or <em>why</em> any of it matters to the service. Swap the company name and this control works for anyone. That's the problem.</p>
+    </div>
+    <div class="pi-compare__col aligned">
+      <span class="pi-compare__label strong">Service-aligned</span>
+      <p class="pi-compare__control"><strong>Control:</strong> The Meridian ingestion API validates each incoming sensor reading against the Data Classification &amp; Processing Specification, enforcing sensor-specific value ranges, format requirements, and transmission frequency expectations.</p>
+      <div class="pi-compare__quote">"Each sensor transmission is validated in real-time against the specification for its registered sensor class. Temperature readings outside the defined range of -40°C to 260°C are quarantined and excluded from processing. A reconciliation job compares expected transmission counts per active sensor against actual receipts every 60 seconds, flagging gaps that may indicate a sensor offline or a network interruption. Only transmissions from registered device IDs tied to an active client site are accepted."</div>
+      <p class="pi-compare__note">Now the reader knows what the system actually does. Specific data types, specific thresholds, specific behaviors. A prospective client reading this understands exactly how their sensor data gets vetted before it touches the processing pipeline.</p>
+    </div>
+  </div>
+  <p class="pi-compare__foot">Same criteria. Same underlying system. But the second version gives the reader something the first one never could: a reason to trust the service, not just the compliance program.</p>
+</div>
 
 This isn't about writing longer controls or padding the report. It's about specificity. If a control could be copy-pasted into a different company's report without changing a word, it's not doing the job.
 
