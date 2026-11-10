@@ -8,7 +8,9 @@ const oi=process.argv.indexOf('--out');
 const out=oi>0&&process.argv[oi+1]?path.resolve(process.argv[oi+1]):null;
 process.chdir(fileURLToPath(new URL('..',import.meta.url)));
 const J=p=>JSON.parse(fs.readFileSync(p,'utf8'));
-const live=['published','watching','closed'],drafts=process.env.INCLUDE_DRAFTS==='1'||process.argv.includes('--drafts');
+// --demo publishes drafts on the live site under a proof-of-concept banner. Remove it from package.json once entries are signed off.
+const demo=process.argv.includes('--demo');
+const live=['published','watching','closed'],drafts=demo||process.env.INCLUDE_DRAFTS==='1'||process.argv.includes('--drafts');
 const tsc=J('taxonomy/tsc.json'),modes=J('taxonomy/failure-modes.json');
 const all=fs.readdirSync('incidents').filter(f=>f.endsWith('.json')).map(f=>J('incidents/'+f));
 const inc=all.filter(d=>live.includes(d.status)||(drafts&&['drafted','in-review'].includes(d.status)))
@@ -22,7 +24,7 @@ const INC=inc.map(d=>{CTRL[d.id]=d.steps.map(s=>[s.template_control,s.custom_con
     controls:d.steps.filter(s=>s.custom_control&&s.custom_control!=='TO WRITE').length}});
 const safe=o=>JSON.stringify(o).replace(/</g,'\\u003c');
 const data=`const TSC=${safe(TSC)};\nconst MODES=${safe(MODES)};\nconst INC=${safe(INC)};\nconst CTRL=${safe(CTRL)};
-const PREVIEW=${drafts};`;
+const PREVIEW=${JSON.stringify(demo?'demo':drafts?'local':'')};`;
 const dest=out||path.resolve('site/dist/index.html');
 fs.mkdirSync(path.dirname(dest),{recursive:true});
 fs.writeFileSync(dest,fs.readFileSync('site/template.html','utf8').replace('/*__DATA__*/',()=>data));

@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "library": "node beyond-the-template/scripts/validate.mjs && node beyond-the-template/scripts/build.mjs --out public/beyond-the-template/index.html",
+    "library": "node beyond-the-template/scripts/validate.mjs && node beyond-the-template/scripts/build.mjs --demo --out public/beyond-the-template/index.html",
     "predev": "npm run library",
     "dev": "astro dev",
     "prebuild": "npm run library",

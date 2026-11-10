@@ -153,7 +153,8 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 /*__DATA__*/
 const $=s=>document.querySelector(s);
 const view=$("#view");
-if(PREVIEW)$(".wrap").insertAdjacentHTML("afterbegin",`<p class="preview-banner" role="note"><b>Local draft preview:</b> this copy includes unreviewed entries and is never published, since the site build only ships entries that have been signed off.</p>`);
+if(PREVIEW==="local")$(".wrap").insertAdjacentHTML("afterbegin",`<p class="preview-banner" role="note"><b>Local draft preview:</b> this copy includes unreviewed entries and is never published, since the site build only ships entries that have been signed off.</p>`);
+if(PREVIEW==="demo")$(".wrap").insertAdjacentHTML("afterbegin",`<p class="preview-banner" role="note"><b>Proof of concept:</b> the entries below are drafts that have not yet been through review, so the criteria mappings, failure modes and custom controls may change, and the thresholds inside the controls are illustrative.</p>`);
 let cat="All";
 const pill=m=>`<span class="pill m-${m}">${MODES[m][0]}</span>`;
 const cmp=c=>`<div class="cmp"><div class="tpl"><b>Template control</b>${c[0]}</div><div class="cus"><b>Written for this environment</b>${c[1]}</div></div>`;

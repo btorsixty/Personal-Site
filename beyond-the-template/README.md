@@ -33,6 +33,8 @@ A public library of security incidents. Each one is walked step by step and tied
 ## Where it lives
 This folder sits inside the personal site repository. The site is served at `/beyond-the-template/`. Every site build (Vercel runs `npm run build`) first validates the entries and writes the page to `public/beyond-the-template/index.html`, which is generated and not committed. Merging to `main` publishes, so the two-person rule is enforced at merge.
 
+**Demo mode is on.** The `library` script in `package.json` passes `--demo`, which publishes the draft entries under a "Proof of concept" banner. Remove `--demo` once entries are signed off, and only published entries will ship.
+
 ## Commands (run from the repository root)
 ```
 npm run library                                            # validate, then build the page into the site
