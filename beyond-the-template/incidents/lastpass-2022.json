@@ -35,7 +35,7 @@
         "CC6.8"
       ],
       "failure_mode": "scope",
-      "rationale": "A personal device could open the corporate vault holding the most sensitive keys. Unmanaged endpoints are rarely in the tested population.",
+      "rationale": "A personal device could open the corporate vault holding the most sensitive keys, and unmanaged endpoints like that one are rarely part of the population an auditor tests.",
       "template_control": "Remote access requires MFA.",
       "custom_control": "The vault holding backup decryption keys opens only from company-managed devices that pass a posture check. Personal devices are blocked at the identity provider, proven quarterly by an attempted login from an unmanaged device."
     },
@@ -68,7 +68,7 @@
     "When an incident closes, who decides what stolen material could enable next?",
     "Which customer data fields are encrypted at rest, and which are not?"
   ],
-  "limits": "A targeted attack on an employee's home network is outside any service organization's boundary. SOC II can only test whether that home device was allowed to matter.",
+  "limits": "A targeted attack on an employee's home network falls outside any service organization's boundary, so the most SOC II can test is whether a home device like that one was allowed to reach anything that mattered.",
   "sources": [
     {
       "label": "CSO Online",

@@ -4,7 +4,7 @@
   "period": "Dec 2022 to Jan 2023",
   "category": "Endpoint compromise",
   "status": "drafted",
-  "summary": "Malware on one engineer's laptop stole an authenticated session. That session could mint production access tokens, and customer secrets were taken.",
+  "summary": "Malware on one engineer's laptop stole an authenticated session that could mint production access tokens, which the attacker then used to take customer secrets.",
   "steps": [
     {
       "event": "Malware on an engineer's laptop stole a valid SSO session that had already passed two-factor authentication.",
@@ -13,7 +13,7 @@
         "CC6.1"
       ],
       "failure_mode": "design",
-      "rationale": "MFA protects the login. A stolen post-login session walks past it unless sessions are short or bound to the device.",
+      "rationale": "MFA protects the login itself, so a session stolen after login gets past it unless sessions are short-lived or bound to the device.",
       "template_control": "MFA is required for access to company systems.",
       "custom_control": "SSO sessions for staff with production access expire after a set number of hours and are bound to the device certificate. A session presented from another device is rejected and alerted on."
     },
@@ -24,7 +24,7 @@
         "CC6.3"
       ],
       "failure_mode": "design",
-      "rationale": "Standing production privilege on a daily-use account meant one laptop equalled production.",
+      "rationale": "Because a daily-use account held standing production privilege, compromising that one laptop was enough to reach production.",
       "template_control": "Production access is restricted to authorized personnel.",
       "custom_control": "No employee holds a standing ability to generate production access tokens. Access is granted per request, for a limited time, with a second person's approval, and every grant is logged."
     },
@@ -45,7 +45,7 @@
         "CC7.2"
       ],
       "failure_mode": "operation",
-      "rationale": "The first signal came from outside. Internal monitoring had not flagged the session.",
+      "rationale": "The first signal came from a customer, because internal monitoring had not flagged the stolen session.",
       "template_control": "Logs are collected and monitored.",
       "custom_control": "Use of production access tokens from outside company address ranges, and reads of customer secret stores with no linked deployment or support ticket, alert immediately."
     }
@@ -59,7 +59,7 @@
     "Who holds standing production access, and could it be granted on request instead?",
     "If one engineer laptop is compromised today, what is reachable?"
   ],
-  "limits": "No endpoint tool catches all malware. SOC II can test what a compromised laptop is able to reach.",
+  "limits": "No endpoint tool catches all malware, but SOC II can test what a compromised laptop is able to reach.",
   "sources": [
     {
       "label": "CircleCI incident report",

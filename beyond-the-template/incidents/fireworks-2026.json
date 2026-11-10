@@ -4,7 +4,7 @@
   "period": "Oct to Nov 2026",
   "category": "Third party",
   "status": "drafted",
-  "summary": "Two intrusions in one month. Misused internal credentials exposed secrets in customer evaluation jobs. Then a breach at an outside cloud host carrying R&D machines became a path to billing data, datasets and partial model weights.",
+  "summary": "Fireworks AI had two intrusions within a month. Misused internal credentials first exposed secrets in customer evaluation jobs, and a breach at an outside cloud host carrying R&D machines then became a path to billing data, datasets and partial model weights.",
   "steps": [
     {
       "event": "Internal credentials were misused and environment variables in evaluation jobs, holding customer API keys and tokens, were read.",
@@ -23,7 +23,7 @@
         "CC6.6"
       ],
       "failure_mode": "scope",
-      "rationale": "Whether the R&D environment and its host sat inside the system description is not public. If they sat outside, no test touched them.",
+      "rationale": "It is not public whether the R&D environment and its host sat inside the system description, and if they sat outside it, none of the audit testing would have reached them.",
       "template_control": "Vendors are assessed annually and their SOC II reports are reviewed.",
       "custom_control": "Every provider hosting company compute, R&D included, is listed in the system description with the data and networks its machines can reach. Hosts not approved for customer data have no network route or credentials to environments that hold it, confirmed quarterly by a connectivity test."
     },
@@ -34,7 +34,7 @@
         "CC6.6"
       ],
       "failure_mode": "design",
-      "rationale": "Development machines with a route to customer data is a segregation problem, whatever the entry point.",
+      "rationale": "Whatever the entry point, development machines that have a route to customer data point to a gap in how the environments were segregated.",
       "template_control": "Development and production environments are logically separated.",
       "custom_control": "Workloads launched from development or research machines cannot authenticate to billing, dataset or model storage. Those stores accept only named production service identities, and an attempt from any other source raises an alert."
     },
@@ -45,7 +45,7 @@
         "CC7.5"
       ],
       "failure_mode": "open",
-      "rationale": "The second route was a different vector. Public facts do not show whether the first response could have found it.",
+      "rationale": "The second intrusion came through a different vector, and the public facts do not show whether the response to the first one could have found it.",
       "template_control": "An incident response plan is documented and tested annually.",
       "custom_control": "Before a security incident is closed, the response lead records every other environment where the compromised credentials or access path were valid and confirms each was reviewed. Closure needs sign-off from someone outside the response team."
     }
@@ -60,7 +60,7 @@
     "Where do customer-supplied secrets sit at rest, and which internal identities can read them?",
     "For each subservice organization, what does an attacker reach if it is compromised tomorrow?"
   ],
-  "limits": "A SOC II on Fireworks gives no assurance over the cloud host's own controls. Under the carve-out method that breach sits outside the report by design. What SOC II can test is how the host was chosen, monitored and walled off.",
+  "limits": "A SOC II on Fireworks gives no assurance over the cloud host's own controls, and under the carve-out method that breach sits outside the report by design, although the report can still test how the host was chosen, how it was monitored and how well it was walled off from customer data.",
   "sources": [
     {
       "label": "Fireworks security bulletin",

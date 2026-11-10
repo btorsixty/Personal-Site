@@ -18,7 +18,7 @@
       "custom_control": "Contractors reach company data platforms only from company-issued devices or a managed virtual desktop. Data platform credentials do not work from unmanaged devices."
     },
     {
-      "event": "Those credentials still worked years later.",
+      "event": "Many of those credentials still worked years after they were stolen.",
       "criteria": [
         "CC6.1"
       ],
@@ -33,7 +33,7 @@
         "CC6.1"
       ],
       "failure_mode": "design",
-      "rationale": "MFA was available and enrolled per user. It was not enforced for the tenant.",
+      "rationale": "MFA was available but left to each user to enroll in, rather than enforced across the tenant.",
       "template_control": "MFA is required for access to production systems.",
       "custom_control": "MFA is enforced at tenant level in the data warehouse, service and contractor users included. A monthly report from the platform lists any user able to log in without it, and the expected count is zero."
     },
@@ -43,7 +43,7 @@
         "CC6.6"
       ],
       "failure_mode": "design",
-      "rationale": "The platform offered the restriction. The tenants were configured without it.",
+      "rationale": "The platform offered network restrictions, but these tenants had been configured without them.",
       "template_control": "Firewalls restrict inbound traffic.",
       "custom_control": "A network policy limits data warehouse connections to company network ranges and named integration addresses. Changes to the policy need approval and raise an alert."
     }
@@ -56,7 +56,7 @@
     "Which complementary user entity controls in the vendor's report have we actually implemented?",
     "Do contractors reach our systems from devices we can inspect?"
   ],
-  "limits": "A vendor's clean report says nothing about how its customers configure their side. The controls that failed here were the customers' own, listed in vendor reports as user entity responsibilities.",
+  "limits": "A vendor's clean report says nothing about how its customers configure their side of the platform, and the controls that failed here were the customers' own, the ones vendor reports list as user entity responsibilities.",
   "sources": [
     {
       "label": "SecurityWeek on the Mandiant findings",

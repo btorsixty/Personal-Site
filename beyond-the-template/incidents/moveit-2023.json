@@ -14,7 +14,7 @@
       "failure_mode": "beyond",
       "rationale": "For the product's customers, scanning and patching cannot find a flaw nobody has published.",
       "template_control": "Vulnerability scans run quarterly and critical findings are patched within 30 days.",
-      "custom_control": "Internet-facing file transfer systems sit behind a web application firewall with injection rules. Emergency vendor advisories for them are actioned within 24 hours, including taking the system offline when no patch exists. This narrows the window. It does not close it."
+      "custom_control": "Internet-facing file transfer systems sit behind a web application firewall with injection rules. Emergency vendor advisories for them are actioned within 24 hours, including taking the system offline when no patch exists, which narrows the exposure window without closing it."
     },
     {
       "event": "The flaw was in the vendor's shipped code.",
@@ -43,7 +43,7 @@
         "C1.2"
       ],
       "failure_mode": "operation",
-      "rationale": "Transfer servers are meant to be a waypoint. Retention rules that existed on paper were not clearing files in practice.",
+      "rationale": "Transfer servers are meant to be a waypoint, but the retention rules that existed on paper were not clearing files off them in practice.",
       "template_control": "Data is retained and disposed of according to policy.",
       "custom_control": "A system job deletes files from the transfer server seven days after delivery. A weekly report lists any file older than that, and the expected count is zero."
     }
@@ -56,7 +56,7 @@
     "Is retention on transfer servers enforced by the system or left to users?",
     "What does our vendor's report say about how it tests its own code?"
   ],
-  "limits": "This is the entry where the skeptics are mostly right. No SOC II at a customer would have prevented exploitation of this flaw. What it could have reduced is how much was there to take.",
+  "limits": "This is the entry where the skeptics are mostly right, since no SOC II at a customer would have prevented exploitation of this flaw, though it could have reduced how much data was sitting on the server to take.",
   "sources": [
     {
       "label": "CISA and FBI advisory announcement",

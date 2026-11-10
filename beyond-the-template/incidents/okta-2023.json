@@ -35,17 +35,17 @@
         "C1.1"
       ],
       "failure_mode": "design",
-      "rationale": "Uploaded files were stored as received. Nothing stripped credentials, and tokens were not bound to a network or device.",
+      "rationale": "Uploaded files were stored as received, with nothing in place to strip credentials out of them, and the tokens inside were not bound to a network or device.",
       "template_control": "Customer data is encrypted in transit and at rest.",
       "custom_control": "Files uploaded to support cases are scanned on receipt, and session tokens and cookies are stripped before storage. Administrator sessions are bound to the originating network, so a copied token fails elsewhere."
     },
     {
-      "event": "Customers noticed first. Okta tied the activity to the service account once a customer supplied an attacker IP address.",
+      "event": "Customers noticed the activity first, and Okta tied it to the service account only after a customer supplied an attacker IP address.",
       "criteria": [
         "CC7.2"
       ],
       "failure_mode": "operation",
-      "rationale": "Logs existed. The file-view events that showed the access were not what was being watched.",
+      "rationale": "The logs existed, but the file-view events that showed the access were not among the events anyone was watching.",
       "template_control": "Security events are logged and reviewed.",
       "custom_control": "File view and download events in the support system go to the SIEM, with alerts for access by service accounts and for volume above a per-user baseline. Alerts are triaged within one business day."
     },

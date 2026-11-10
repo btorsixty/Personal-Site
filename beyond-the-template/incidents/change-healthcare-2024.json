@@ -7,7 +7,7 @@
   "summary": "Stolen credentials on a remote access portal without MFA led to nine days of quiet movement, then ransomware that disrupted US healthcare payments for weeks. A $22 million ransom was reportedly paid.",
   "steps": [
     {
-      "event": "On Feb 12 the attacker logged in to a Citrix remote access portal with compromised credentials. The portal had no MFA.",
+      "event": "On Feb 12 the attacker used compromised credentials to log in to a Citrix remote access portal that had no MFA.",
       "criteria": [
         "CC6.1",
         "CC6.6"
@@ -23,7 +23,7 @@
         "CC3.4"
       ],
       "failure_mode": "scope",
-      "rationale": "Acquired systems tend to sit outside the control set until integration finishes, and attackers do not wait for that.",
+      "rationale": "Acquired systems tend to sit outside the control set until integration finishes, which can leave them exposed for as long as integration takes.",
       "template_control": "Risk assessments are performed annually.",
       "custom_control": "Within 90 days of an acquisition closing, the acquired environment's external access points, privileged accounts and backups are assessed against company standards. Until gaps are closed the environment stays network-isolated from the parent."
     },
@@ -44,7 +44,7 @@
         "CC7.5"
       ],
       "failure_mode": "design",
-      "rationale": "Recovery depended on rebuilding. Backups were not set apart well enough to restore quickly.",
+      "rationale": "Recovery depended on rebuilding systems because the backups were not set apart well enough to restore from quickly.",
       "template_control": "Backups are performed daily and tested annually.",
       "custom_control": "Backups of core claims and payment systems sit in an account and network that production credentials cannot reach. Those systems are fully restored into a clean environment each year against a stated recovery time."
     }
@@ -57,7 +57,7 @@
     "What is the plan for controls over an acquisition between close and full integration?",
     "When did we last restore core services from backup under realistic conditions?"
   ],
-  "limits": "An attacker holding valid credentials cannot be ruled out by any report. SOC II can test whether one password was enough.",
+  "limits": "No report can rule out an attacker who holds valid credentials, but SOC II can test whether a single password was enough to get in.",
   "sources": [
     {
       "label": "TechTarget on the congressional testimony",
