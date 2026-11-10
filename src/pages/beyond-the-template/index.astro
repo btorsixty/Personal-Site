@@ -1,0 +1,60 @@
+---
+// Beyond the Template. Content comes from beyond-the-template/incidents/, which
+// beyond-the-template/scripts/build.mjs turns into src/generated/beyond-the-template.json
+// before every dev or build run (see the "library" script in package.json).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import data from '../../generated/beyond-the-template.json';
+import libraryJs from '../../../beyond-the-template/site/library.js?raw';
+import '../../../beyond-the-template/site/library.css';
+
+const banner = {
+  demo: 'the entries below are drafts that have not yet been through review, so the criteria mappings, failure modes and custom controls may change, and the thresholds inside the controls are illustrative.',
+  local: 'this copy includes unreviewed entries and is never published, since the site build only ships entries that have been signed off.',
+}[data.PREVIEW];
+const bannerLabel = data.PREVIEW === 'demo' ? 'Proof of concept' : 'Local draft preview';
+const payload = JSON.stringify({ TSC: data.TSC, MODES: data.MODES, INC: data.INC, CTRL: data.CTRL }).replace(/</g, '\\u003c');
+---
+<BaseLayout
+  title="Beyond the Template — Ben L Torres"
+  description="Security incidents walked step by step, with the SOC II criterion, the template control, and a control written for that environment."
+  active="professional"
+>
+  <div class="btt">
+    <header class="wrap page-head reveal">
+      <div class="crumb">
+        <a href="/">Home</a><span class="sep">/</span>
+        <a href="/#professional">Professional</a><span class="sep">/</span>
+        <a href="/projects">Projects</a><span class="sep">/</span>
+        <span class="here">Beyond the Template</span>
+      </div>
+      {banner && <p class="btt-banner" role="note"><b>{bannerLabel}:</b> {banner}</p>}
+      <h1>Beyond <em>the Template</em></h1>
+    </header>
+
+    <section class="wrap btt-intro reveal" aria-label="Introduction">
+      <p class="btt-lede">The argument heard across Twitter and LinkedIn:</p>
+      <blockquote>&ldquo;That company that got breached had a SOC II, so SOC II is a scam. It means nothing and does nothing. It&rsquo;s security <em>theatre</em>.&rdquo;</blockquote>
+      <p>The templated SOC II report you received is security theatre. A well-thought-out control framework, built on your environment and your operations and tied to the Trust Services Criteria, can actually work for you.</p>
+      <p>It doesn&rsquo;t make you breach-proof. Exactly zero frameworks or compliance programs can guarantee that.</p>
+      <p>Developing, and therefore including, customized controls that truly match what an organization does can deliver many times the value of a templated report.</p>
+      <p class="btt-thesis">SOC II isn&rsquo;t a scam. A templated SOC II without proper diligence, however, is a waste of time.</p>
+
+      <h2 class="btt-label" id="what-this-is">What this is</h2>
+      <p>Built from public disclosures as they come out, the library below shows how controls designed around an organization&rsquo;s own processes can be tied back to the Trust Services Criteria, included in a SOC II report, and mitigate the event or the exposure, or possibly prevent it altogether.</p>
+      <p>Each incident is walked step by step. For every weak point you get the criterion, the control wording a template hands you, and a control written for that environment.</p>
+      <p class="btt-disclaimer">These are not claims about any organization&rsquo;s actual reports. This is an illustrative exercise showing how a SOC II report can work for each organization. Template wording is generic paraphrase, not any vendor&rsquo;s text.</p>
+    </section>
+
+    <main class="wrap">
+      <nav class="btt-tabs glass" id="btt-tabs" aria-label="Library views">
+        <a href="#incidents" data-v="incidents">Incidents</a>
+        <a href="#criteria" data-v="criteria">By criteria</a>
+        <a href="#failure-modes" data-v="failure-modes">Why controls fail</a>
+      </nav>
+      <div class="btt-view" id="btt-view" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <script is:inline set:html={`window.BTT=${payload};`}></script>
+  <script is:inline set:html={libraryJs}></script>
+</BaseLayout>

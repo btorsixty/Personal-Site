@@ -4,13 +4,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "library": "node beyond-the-template/scripts/validate.mjs && node beyond-the-template/scripts/build.mjs --demo --out public/beyond-the-template/index.html",
+    "library": "node beyond-the-template/scripts/validate.mjs && node beyond-the-template/scripts/build.mjs --demo",
     "predev": "npm run library",
     "dev": "astro dev",
     "prebuild": "npm run library",
     "build": "astro build",
     "preview": "astro preview",
-    "drafts": "npm run build && node beyond-the-template/scripts/build.mjs --drafts --out dist/beyond-the-template/index.html"
+    "drafts": "node beyond-the-template/scripts/validate.mjs && node beyond-the-template/scripts/build.mjs --drafts && astro build"
   },
   "dependencies": {
     "astro": "^5.0.0"

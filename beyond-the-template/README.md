@@ -28,19 +28,19 @@ A public library of security incidents. Each one is walked step by step and tied
 - `sources.yml` where the agent looks.
 - `EDITORIAL.md` inclusion, publishing and correction rules.
 - `agent/` the standing instructions for the daily intake run and the weekly watch run.
-- `site/template.html` the page. `scripts/build.mjs` fills it from `incidents/`.
+- `site/library.js` and `site/library.css` the views and styling, in the site's Forest Glass theme. The page itself is `src/pages/beyond-the-template/index.astro`, which uses the site layout. `scripts/build.mjs` turns `incidents/` into `src/generated/beyond-the-template.json` for it.
 
 ## Where it lives
-This folder sits inside the personal site repository. The site is served at `/beyond-the-template/`. Every site build (Vercel runs `npm run build`) first validates the entries and writes the page to `public/beyond-the-template/index.html`, which is generated and not committed. Merging to `main` publishes, so the two-person rule is enforced at merge.
+This folder sits inside the personal site repository. The site is served at `/beyond-the-template/`. Every site build (Vercel runs `npm run build`) first validates the entries and writes `src/generated/beyond-the-template.json`, which is generated and not committed. Merging to `main` publishes, so the two-person rule is enforced at merge.
 
 **Demo mode is on.** The `library` script in `package.json` passes `--demo`, which publishes the draft entries under a "Proof of concept" banner. Remove `--demo` once entries are signed off, and only published entries will ship.
 
 ## Commands (run from the repository root)
 ```
 npm run library                                            # validate, then build the page into the site
-npm run drafts && npm run preview                         # local preview with all draft entries, under a yellow banner
+npm run drafts && npm run preview                         # local preview with all draft entries, under a "Local draft preview" banner
 node beyond-the-template/scripts/validate.mjs              # check every entry
-INCLUDE_DRAFTS=1 node beyond-the-template/scripts/build.mjs  # preview with drafts at beyond-the-template/site/dist/index.html
+
 ```
 
 ## Seed entries

@@ -2,5 +2,5 @@ node_modules/
 dist/
 .astro/
 # Generated from beyond-the-template/ at build time
-public/beyond-the-template/
-beyond-the-template/site/dist/
+src/generated/
+
