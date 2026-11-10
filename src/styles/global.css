@@ -89,6 +89,7 @@
   .ibtn.li:hover{border-color:#7fb6e0;color:#9fc8e8}
   .ibtn.project{border-color:rgba(143,208,168,.4);color:var(--sage-glow)}
   .ibtn.project:hover{border-color:var(--sage-glow)}
+  .hero .disclaimer{margin:18px 0 0;font-size:.82rem;color:var(--mist-dim);font-style:italic;opacity:.85}
   .ibtn.slot{border-style:dashed;color:var(--mist-dim);cursor:default}
   .ibtn.slot:hover{transform:none}
 
