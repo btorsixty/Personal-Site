@@ -87,6 +87,8 @@
   .ibtn svg{width:16px;height:16px;flex:none}
   .ibtn.resume:hover{border-color:var(--oak);color:var(--oak)}
   .ibtn.li:hover{border-color:#7fb6e0;color:#9fc8e8}
+  .ibtn.project{border-color:rgba(143,208,168,.4);color:var(--sage-glow)}
+  .ibtn.project:hover{border-color:var(--sage-glow)}
   .ibtn.slot{border-style:dashed;color:var(--mist-dim);cursor:default}
   .ibtn.slot:hover{transform:none}
 
@@ -206,8 +208,14 @@
   .entry:last-child{border-bottom:1px solid var(--glass-border)}
   .entry:hover{background:linear-gradient(90deg,rgba(143,208,168,.07),transparent 72%);padding-left:16px}
   .entry .date{font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--mist-dim);letter-spacing:.04em;padding-top:7px}
-  .entry .body h2{font-family:Fraunces,serif;font-weight:500;font-size:1.5rem;line-height:1.25;margin:0 0 9px;transition:color .25s}
-  .entry:hover .body h2{color:var(--sage-glow)}
+  .entry .body h2,.entry .body h3{font-family:Fraunces,serif;font-weight:500;font-size:1.5rem;line-height:1.25;margin:0 0 9px;transition:color .25s}
+  .entry:hover .body h2,.entry:hover .body h3{color:var(--sage-glow)}
+
+  /* ---- recent publications (home) ---- */
+  .recent{padding:clamp(8px,2vw,24px) 0 0}
+  .recent .domain-head{margin-bottom:12px}
+  .recent .domain-head .label{color:var(--sage-glow)}
+  .recent .list{padding-bottom:0}
   .entry .body p{color:var(--mist-dim);font-size:.96rem;margin:0;max-width:60ch}
   .entry .etag{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--oak);letter-spacing:.08em;white-space:nowrap;padding-top:7px}
   @media(max-width:720px){
