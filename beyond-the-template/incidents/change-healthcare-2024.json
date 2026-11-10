@@ -57,7 +57,7 @@
     "What is the plan for controls over an acquisition between close and full integration?",
     "When did we last restore core services from backup under realistic conditions?"
   ],
-  "limits": "An attacker holding valid credentials cannot be ruled out by any report. SOC 2 can test whether one password was enough.",
+  "limits": "An attacker holding valid credentials cannot be ruled out by any report. SOC II can test whether one password was enough.",
   "sources": [
     {
       "label": "TechTarget on the congressional testimony",

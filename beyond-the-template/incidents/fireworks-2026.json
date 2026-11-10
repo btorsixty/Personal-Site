@@ -24,7 +24,7 @@
       ],
       "failure_mode": "scope",
       "rationale": "Whether the R&D environment and its host sat inside the system description is not public. If they sat outside, no test touched them.",
-      "template_control": "Vendors are assessed annually and their SOC 2 reports are reviewed.",
+      "template_control": "Vendors are assessed annually and their SOC II reports are reviewed.",
       "custom_control": "Every provider hosting company compute, R&D included, is listed in the system description with the data and networks its machines can reach. Hosts not approved for customer data have no network route or credentials to environments that hold it, confirmed quarterly by a connectivity test."
     },
     {
@@ -60,7 +60,7 @@
     "Where do customer-supplied secrets sit at rest, and which internal identities can read them?",
     "For each subservice organization, what does an attacker reach if it is compromised tomorrow?"
   ],
-  "limits": "A SOC 2 on Fireworks gives no assurance over the cloud host's own controls. Under the carve-out method that breach sits outside the report by design. What SOC 2 can test is how the host was chosen, monitored and walled off.",
+  "limits": "A SOC II on Fireworks gives no assurance over the cloud host's own controls. Under the carve-out method that breach sits outside the report by design. What SOC II can test is how the host was chosen, monitored and walled off.",
   "sources": [
     {
       "label": "Fireworks security bulletin",

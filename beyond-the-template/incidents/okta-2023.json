@@ -68,7 +68,7 @@
     "How are service accounts inventoried, vaulted and rotated, and who reviews their activity?",
     "What stops a company credential from syncing to a personal account?"
   ],
-  "limits": "SOC 2 does not test what customers choose to upload, and theft from an employee's personal account happens where no company control can see.",
+  "limits": "SOC II does not test what customers choose to upload, and theft from an employee's personal account happens where no company control can see.",
   "sources": [
     {
       "label": "Okta root cause and remediation",

@@ -59,7 +59,7 @@
     "Who holds standing production access, and could it be granted on request instead?",
     "If one engineer laptop is compromised today, what is reachable?"
   ],
-  "limits": "No endpoint tool catches all malware. SOC 2 can test what a compromised laptop is able to reach.",
+  "limits": "No endpoint tool catches all malware. SOC II can test what a compromised laptop is able to reach.",
   "sources": [
     {
       "label": "CircleCI incident report",

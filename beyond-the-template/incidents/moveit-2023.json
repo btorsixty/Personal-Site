@@ -56,7 +56,7 @@
     "Is retention on transfer servers enforced by the system or left to users?",
     "What does our vendor's report say about how it tests its own code?"
   ],
-  "limits": "This is the entry where the skeptics are mostly right. No SOC 2 at a customer would have prevented exploitation of this flaw. What it could have reduced is how much was there to take.",
+  "limits": "This is the entry where the skeptics are mostly right. No SOC II at a customer would have prevented exploitation of this flaw. What it could have reduced is how much was there to take.",
   "sources": [
     {
       "label": "CISA and FBI advisory announcement",

@@ -1,6 +1,6 @@
 # Beyond the Template
 
-A public library of security incidents. Each one is walked step by step and tied to the SOC 2 criteria that speak to it, the control wording a template would carry, and a control written for that environment.
+A public library of security incidents. Each one is walked step by step and tied to the SOC II criteria that speak to it, the control wording a template would carry, and a control written for that environment.
 
 ## How an incident moves through
 

@@ -14,7 +14,7 @@ These are proposed defaults. Each one is a decision for the editor to confirm or
 ## What an entry may claim
 - `event` text states only what a cited source says.
 - Inference lives in `rationale` and is worded as inference.
-- No entry states or implies what a company's SOC 2 report, scope or controls contained unless the report is cited.
+- No entry states or implies what a company's SOC II report, scope or controls contained unless the report is cited.
 - Template wording is generic. It is never attributed to a named vendor or auditor.
 - Custom controls are written about the environment type, not as instructions to the named company.
 
@@ -25,3 +25,6 @@ These are proposed defaults. Each one is a decision for the editor to confirm or
 ## After publishing
 - Entries are watched for 90 days. New facts open an update issue.
 - After 90 quiet days the status moves to closed.
+
+## House style
+- Write "SOC II", never "SOC 2". It is the house spelling across this site.

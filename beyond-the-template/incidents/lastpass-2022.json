@@ -68,7 +68,7 @@
     "When an incident closes, who decides what stolen material could enable next?",
     "Which customer data fields are encrypted at rest, and which are not?"
   ],
-  "limits": "A targeted attack on an employee's home network is outside any service organization's boundary. SOC 2 can only test whether that home device was allowed to matter.",
+  "limits": "A targeted attack on an employee's home network is outside any service organization's boundary. SOC II can only test whether that home device was allowed to matter.",
   "sources": [
     {
       "label": "CSO Online",

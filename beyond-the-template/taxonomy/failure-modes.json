@@ -12,7 +12,7 @@
     "definition": "The control was defined and did not work on the day, or did not cover the whole population."
   },
   "beyond": {
-    "label": "Beyond SOC 2",
+    "label": "Beyond SOC II",
     "definition": "No criterion reasonably prevents this step. Included so the library stays honest."
   },
   "open": {
