@@ -2,6 +2,7 @@
   "id": "lastpass-2022",
   "name": "LastPass",
   "period": "Aug to Oct 2022",
+  "began": "2022-08",
   "category": "Endpoint compromise",
   "status": "drafted",
   "summary": "A first intrusion took source code and technical detail. That material was then used to target one of four engineers with access to backup decryption keys, through an unpatched media server on a home computer.",
@@ -70,6 +71,16 @@
   ],
   "limits": "A targeted attack on an employee's home network falls outside any service organization's boundary, so the most SOC II can test is whether a home device like that one was allowed to reach anything that mattered.",
   "sources": [
+    {
+      "label": "LastPass: Notice of security incident (Dec 22, 2022)",
+      "url": "https://blog.lastpass.com/posts/notice-of-recent-security-incident",
+      "primary": true
+    },
+    {
+      "label": "LastPass: Security incident update and recommended actions (Mar 1, 2023)",
+      "url": "https://blog.lastpass.com/posts/security-incident-update-recommended-actions",
+      "primary": true
+    },
     {
       "label": "CSO Online",
       "url": "https://www.csoonline.com/article/3688922/hacked-home-computer-of-engineer-led-to-second-lastpass-data-breach.html"

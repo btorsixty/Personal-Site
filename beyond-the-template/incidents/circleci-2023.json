@@ -2,6 +2,7 @@
   "id": "circleci-2023",
   "name": "CircleCI",
   "period": "Dec 2022 to Jan 2023",
+  "began": "2022-12",
   "category": "Endpoint compromise",
   "status": "drafted",
   "summary": "Malware on one engineer's laptop stole an authenticated session that could mint production access tokens, which the attacker then used to take customer secrets.",
@@ -62,8 +63,9 @@
   "limits": "No endpoint tool catches all malware, but SOC II can test what a compromised laptop is able to reach.",
   "sources": [
     {
-      "label": "CircleCI incident report",
-      "url": "https://circleci.com/blog/jan-4-2023-incident-report"
+      "label": "CircleCI: Incident report for the January 4, 2023 security incident",
+      "url": "https://circleci.com/blog/jan-4-2023-incident-report/",
+      "primary": true
     }
   ],
   "changelog": [

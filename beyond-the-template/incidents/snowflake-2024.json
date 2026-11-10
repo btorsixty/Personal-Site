@@ -2,6 +2,7 @@
   "id": "snowflake-2024",
   "name": "Snowflake customer accounts",
   "period": "Apr to Jun 2024",
+  "began": "2024-04",
   "category": "Credential compromise",
   "status": "drafted",
   "summary": "About 165 organizations were notified after an attacker logged in to their Snowflake instances with stolen passwords. Investigators found no breach of Snowflake's own environment.",
@@ -58,6 +59,16 @@
   ],
   "limits": "A vendor's clean report says nothing about how its customers configure their side of the platform, and the controls that failed here were the customers' own, the ones vendor reports list as user entity responsibilities.",
   "sources": [
+    {
+      "label": "Snowflake: Detecting and preventing unauthorized user access",
+      "url": "https://community.snowflake.com/s/question/0D5VI00000Emyl00AB/detecting-and-preventing-unauthorized-user-access",
+      "primary": true
+    },
+    {
+      "label": "Mandiant (Google Cloud): UNC5537 investigation of Snowflake customer data theft",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/unc5537-snowflake-data-theft-extortion",
+      "primary": true
+    },
     {
       "label": "SecurityWeek on the Mandiant findings",
       "url": "https://www.securityweek.com/snowflake-attacks-mandiant-links-data-breaches-to-infostealer-infections/"

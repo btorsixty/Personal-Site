@@ -2,6 +2,7 @@
   "id": "moveit-2023",
   "name": "MOVEit Transfer",
   "period": "May to Jun 2023",
+  "began": "2023-05",
   "category": "Software vulnerability",
   "status": "drafted",
   "summary": "A ransomware group used an unknown SQL injection flaw in a widely used file transfer product to copy data from internet-facing servers across a very large number of organizations.",
@@ -59,8 +60,14 @@
   "limits": "This is the entry where the skeptics are mostly right, since no SOC II at a customer would have prevented exploitation of this flaw, though it could have reduced how much data was sitting on the server to take.",
   "sources": [
     {
-      "label": "CISA and FBI advisory announcement",
-      "url": "https://cisa.gov/news-events/news/cisa-and-fbi-release-advisory-cl0p-ransomware-gang-exploiting-moveit-vulnerability"
+      "label": "Progress Software: MOVEit Transfer critical vulnerability advisory (May 31, 2023)",
+      "url": "https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023",
+      "primary": true
+    },
+    {
+      "label": "CISA and FBI: Advisory AA23-158A on CL0P exploiting MOVEit",
+      "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-158a",
+      "primary": true
     }
   ],
   "changelog": [

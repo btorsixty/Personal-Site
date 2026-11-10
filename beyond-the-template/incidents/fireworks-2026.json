@@ -2,6 +2,7 @@
   "id": "fireworks-2026",
   "name": "Fireworks AI",
   "period": "Oct to Nov 2026",
+  "began": "2026-10",
   "category": "Third party",
   "status": "drafted",
   "summary": "Fireworks AI had two intrusions within a month. Misused internal credentials first exposed secrets in customer evaluation jobs, and a breach at an outside cloud host carrying R&D machines then became a path to billing data, datasets and partial model weights.",
@@ -63,8 +64,9 @@
   "limits": "A SOC II on Fireworks gives no assurance over the cloud host's own controls, and under the carve-out method that breach sits outside the report by design, although the report can still test how the host was chosen, how it was monitored and how well it was walled off from customer data.",
   "sources": [
     {
-      "label": "Fireworks security bulletin",
-      "url": "https://fireworks.ai/security/bulletins/october-2026-security-incident"
+      "label": "Fireworks AI: Security bulletin on the October 2026 incident",
+      "url": "https://fireworks.ai/security/bulletins/october-2026-security-incident",
+      "primary": true
     },
     {
       "label": "BleepingComputer",

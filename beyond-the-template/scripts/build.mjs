@@ -12,13 +12,14 @@ const live=['published','watching','closed'],drafts=process.env.INCLUDE_DRAFTS==
 const tsc=J('taxonomy/tsc.json'),modes=J('taxonomy/failure-modes.json');
 const all=fs.readdirSync('incidents').filter(f=>f.endsWith('.json')).map(f=>J('incidents/'+f));
 const inc=all.filter(d=>live.includes(d.status)||(drafts&&['drafted','in-review'].includes(d.status)))
-  .sort((a,b)=>b.changelog.at(-1).date.localeCompare(a.changelog.at(-1).date)||a.name.localeCompare(b.name));
+  .sort((a,b)=>a.began.localeCompare(b.began)||a.name.localeCompare(b.name)); // chronological, oldest first
 const TSC={},MODES={},CTRL={};
 for(const k in tsc)TSC[k]=[tsc[k].name,tsc[k].group];
 for(const k in modes)MODES[k]=[modes[k].label,modes[k].definition];
 const INC=inc.map(d=>{CTRL[d.id]=d.steps.map(s=>[s.template_control,s.custom_control]);
   return{id:d.id,name:d.name,date:d.period,cat:d.category,updated:live.includes(d.status)?d.changelog.at(-1).date:'Draft',sum:d.summary,
-    steps:d.steps.map(s=>[s.event,s.criteria,s.failure_mode,s.rationale]),held:d.held,ask:d.auditor_questions,stop:d.limits,src:d.sources.map(s=>[s.label,s.url])}});
+    steps:d.steps.map(s=>[s.event,s.criteria,s.failure_mode,s.rationale]),held:d.held,ask:d.auditor_questions,stop:d.limits,src:d.sources.map(s=>[s.label,s.url,!!s.primary]),
+    controls:d.steps.filter(s=>s.custom_control&&s.custom_control!=='TO WRITE').length}});
 const safe=o=>JSON.stringify(o).replace(/</g,'\\u003c');
 const data=`const TSC=${safe(TSC)};\nconst MODES=${safe(MODES)};\nconst INC=${safe(INC)};\nconst CTRL=${safe(CTRL)};
 const PREVIEW=${drafts};`;

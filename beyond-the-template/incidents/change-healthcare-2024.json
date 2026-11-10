@@ -2,6 +2,7 @@
   "id": "change-healthcare-2024",
   "name": "Change Healthcare",
   "period": "Feb 2024",
+  "began": "2024-02",
   "category": "Ransomware",
   "status": "drafted",
   "summary": "Stolen credentials on a remote access portal without MFA led to nine days of quiet movement, then ransomware that disrupted US healthcare payments for weeks. A $22 million ransom was reportedly paid.",
@@ -59,6 +60,16 @@
   ],
   "limits": "No report can rule out an attacker who holds valid credentials, but SOC II can test whether a single password was enough to get in.",
   "sources": [
+    {
+      "label": "UnitedHealth Group: Form 8-K cybersecurity incident filing (Feb 22, 2024)",
+      "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176624000045/unh-20240221.htm",
+      "primary": true
+    },
+    {
+      "label": "UnitedHealth Group CEO written testimony to the Senate Finance Committee (May 1, 2024)",
+      "url": "https://www.finance.senate.gov/imo/media/doc/0501_witty_testimony.pdf",
+      "primary": true
+    },
     {
       "label": "TechTarget on the congressional testimony",
       "url": "https://www.techtarget.com/searchsecurity/news/366582824/Change-Healthcare-breached-via-Citrix-portal-with-no-MFA"

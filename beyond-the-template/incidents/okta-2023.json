@@ -2,6 +2,7 @@
   "id": "okta-2023",
   "name": "Okta support system",
   "period": "Sep to Oct 2023",
+  "began": "2023-09",
   "category": "Credential compromise",
   "status": "drafted",
   "summary": "A service account for the support case system was used to open files for 134 customers. Troubleshooting files held live session tokens, and five customer sessions were hijacked.",
@@ -71,8 +72,9 @@
   "limits": "SOC II does not test what customers choose to upload, and theft from an employee's personal account happens where no company control can see.",
   "sources": [
     {
-      "label": "Okta root cause and remediation",
-      "url": "https://sec.okta.com/articles/2023/11/unauthorized-access-oktas-support-case-management-system-root-cause/"
+      "label": "Okta: Root cause and remediation for the support system incident",
+      "url": "https://sec.okta.com/articles/2023/11/unauthorized-access-oktas-support-case-management-system-root-cause/",
+      "primary": true
     }
   ],
   "changelog": [

@@ -14,6 +14,7 @@ for(const f of fs.readdirSync('incidents').filter(f=>f.endsWith('.json'))){
   if(!statuses.includes(d.status))e(`bad status ${d.status}`);
   if(!cats.includes(d.category))e(`category not in taxonomy: ${d.category}`);
   if((d.summary||'').length>400)e('summary over 400 characters');
+  if(!new RegExp(schema.properties.began.pattern).test(d.began||''))e(`began must be YYYY-MM, got ${d.began}`);
   if(!Array.isArray(d.steps)||d.steps.length<3)e('needs at least 3 steps');
   (d.steps||[]).forEach((s,n)=>{
     for(const k of schema.properties.steps.items.required)if(!s[k]||!s[k].length)e(`step ${n+1}: missing ${k}`);

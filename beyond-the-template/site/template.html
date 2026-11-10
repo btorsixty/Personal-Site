@@ -56,8 +56,15 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .chip b{font-family:var(--mono);font-weight:500;opacity:.7;margin-left:4px}
 .list{display:flex;flex-direction:column;gap:12px}
-.card{display:flex;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--ink);padding:14px 14px 13px;text-decoration:none;border-radius:2px}
+.card{position:relative;display:flex;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--ink);padding:14px 14px 13px;text-decoration:none;border-radius:2px}
 .card:hover{border-color:var(--ink)}
+.card .open{text-decoration:none}
+.card .open::after{content:"";position:absolute;inset:0}
+.card .official{position:relative;z-index:1;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.card .official b{font:500 11.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.card .official ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:3px}
+.card .official a{color:var(--ink);text-underline-offset:2px}
+.card .count{font:400 12.5px var(--mono);color:var(--muted)}
 .meta{display:flex;gap:10px;flex-wrap:wrap;font:400 12.5px var(--mono);color:var(--muted)}
 .card h2{font-size:20px}
 .card p{font-size:15px;color:var(--muted)}
@@ -141,9 +148,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
     <a href="#criteria" data-v="criteria">By criteria</a>
     <a href="#failure-modes" data-v="failure-modes">Why controls fail</a>
   </nav>
-  <main id="view" class="list" style="gap:18px"></main>
-  <footer>Criterion names are shorthand, not AICPA text. Sources are linked on each entry.</footer>
-</div>
+  <main id="view" class="list" style="gap:18px"></main></div>
 <script>
 /*__DATA__*/
 const $=s=>document.querySelector(s);
@@ -159,11 +164,12 @@ function incidents(){
   const cats=["All",...new Set(INC.map(i=>i.cat))];
   const shown=INC.filter(i=>cat==="All"||i.cat===cat);
   view.innerHTML=`<div class="chips" role="group" aria-label="Filter by event category">${cats.map(c=>`<button class="chip" id="chip-${c.replace(/\W+/g,"-").toLowerCase()}" aria-pressed="${c===cat}" data-c="${c}">${c}<b>${c==="All"?INC.length:INC.filter(i=>i.cat===c).length}</b></button>`).join("")}</div>
-  <div class="list">${shown.map(i=>`<a class="card" href="#${i.id}">
+  <div class="list">${shown.map(i=>{const off=i.src.filter(x=>x[2]);return `<article class="card">
     <div class="meta"><span>${i.cat}</span><span>${i.date}</span></div>
-    <h2>${i.name}</h2><p>${i.sum}</p>
-    <div class="dots" aria-label="Failure mode of each step">${i.steps.map(s=>`<span class="dot m-${s[2]}" title="${MODES[s[2]][0]}"></span>`).join("")}<span style="margin-left:6px">${i.steps.length} weak points, ${i.steps.length} custom controls</span></div>
-  </a>`).join("")}</div>`;
+    <h2><a class="open" href="#${i.id}">${i.name}</a></h2><p>${i.sum}</p>
+    ${off.length?`<div class="official"><b>${off.length===1?"Official disclosure":"Official disclosures"}</b><ul>${off.map(x=>`<li><a href="${x[1]}" target="_blank" rel="noopener">${x[0]}</a></li>`).join("")}</ul></div>`:""}
+    <div class="count">${i.controls} suggested custom control${i.controls===1?"":"s"}</div>
+  </article>`}).join("")}</div>`;
   view.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{cat=b.dataset.c;incidents()});
 }
 
@@ -175,7 +181,7 @@ function detail(i){
   <section class="block"><h3>What held</h3><ul class="held">${i.held.map(x=>`<li>${x}</li>`).join("")}</ul></section>
   <section class="block"><h3>Questions a serious audit asks</h3><ul>${i.ask.map(x=>`<li>${x}</li>`).join("")}</ul></section>
   <section class="block"><h3>Where SOC II stops</h3><p class="stop">${i.stop}</p></section>
-  <section class="block src"><h3>Sources</h3><ul>${i.src.map(x=>`<li><a href="${x[1]}" target="_blank" rel="noopener">${x[0]}</a></li>`).join("")}</ul></section>`;
+  ${[["Official disclosures",i.src.filter(x=>x[2])],["Other reporting",i.src.filter(x=>!x[2])]].filter(g=>g[1].length).map(([h,xs])=>`<section class="block src"><h3>${h}</h3><ul>${xs.map(x=>`<li><a href="${x[1]}" target="_blank" rel="noopener">${x[0]}</a></li>`).join("")}</ul></section>`).join("")}`;
 }
 
 function criteria(){
