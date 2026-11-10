@@ -8,7 +8,7 @@
     "id": {"type":"string","pattern":"^[a-z0-9]+(-[a-z0-9]+)*$","description":"Matches the file name. Used as the page link."},
     "name": {"type":"string"},
     "period": {"type":"string","description":"When it happened, in words. Example: Oct to Nov 2026"},
-    "began": {"type":"string","pattern":"^\\d{4}-(0[1-9]|1[0-2])$","description":"Year and month the incident began, YYYY-MM. Sets the order of the feed."},
+    "began": {"type":"string","pattern":"^\\d{4}-(0[1-9]|1[0-2])$","description":"Year and month the incident began, YYYY-MM. Sets the order of the feed, newest first."},
     "category": {"type":"string","description":"One value from taxonomy/categories.json"},
     "status": {"enum":["candidate","accepted","drafted","in-review","published","watching","closed"]},
     "summary": {"type":"string","maxLength":400},

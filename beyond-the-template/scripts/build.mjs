@@ -12,7 +12,7 @@ const live=['published','watching','closed'],drafts=process.env.INCLUDE_DRAFTS==
 const tsc=J('taxonomy/tsc.json'),modes=J('taxonomy/failure-modes.json');
 const all=fs.readdirSync('incidents').filter(f=>f.endsWith('.json')).map(f=>J('incidents/'+f));
 const inc=all.filter(d=>live.includes(d.status)||(drafts&&['drafted','in-review'].includes(d.status)))
-  .sort((a,b)=>a.began.localeCompare(b.began)||a.name.localeCompare(b.name)); // chronological, oldest first
+  .sort((a,b)=>b.began.localeCompare(a.began)||a.name.localeCompare(b.name)); // reverse chronological, newest first
 const TSC={},MODES={},CTRL={};
 for(const k in tsc)TSC[k]=[tsc[k].name,tsc[k].group];
 for(const k in modes)MODES[k]=[modes[k].label,modes[k].definition];
