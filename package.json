@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "prebuild": "npm run library",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "drafts": "npm run build && node beyond-the-template/scripts/build.mjs --drafts --out dist/beyond-the-template/index.html"
   },
   "dependencies": {
     "astro": "^5.0.0"

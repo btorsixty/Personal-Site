@@ -36,6 +36,7 @@ This folder sits inside the personal site repository. The site is served at `/be
 ## Commands (run from the repository root)
 ```
 npm run library                                            # validate, then build the page into the site
+npm run drafts && npm run preview                         # local preview with all draft entries, under a yellow banner
 node beyond-the-template/scripts/validate.mjs              # check every entry
 INCLUDE_DRAFTS=1 node beyond-the-template/scripts/build.mjs  # preview with drafts at beyond-the-template/site/dist/index.html
 ```
