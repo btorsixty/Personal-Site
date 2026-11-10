@@ -106,6 +106,11 @@ summary .ct{font:500 13px var(--mono);color:var(--muted);font-variant-numeric:ta
 .mode p{font-size:14.5px;color:var(--muted)}
 .finding{font-family:var(--display);font-weight:700;font-size:21px;line-height:1.25;max-width:30ch}
 .finding em{font-style:normal;background:var(--mark);color:var(--mark-ink);padding:0 .15em}
+.intro{display:flex;flex-direction:column;gap:12px}
+.intro p{font-size:16.5px}
+.intro+.intro{margin-top:16px;padding-top:18px;border-top:1px solid var(--line)}
+.intro blockquote{margin:0;padding:4px 0 4px 16px;border-left:4px solid var(--mark);font-family:var(--display);font-weight:700;font-size:clamp(19px,4.6vw,23px);line-height:1.3;max-width:34ch}
+.intro .thesis{font-family:var(--display);font-weight:700;font-size:19px;line-height:1.35}
 footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
 @media (prefers-reduced-motion:no-preference){.card,.chip{transition:border-color .15s,background .15s}}
 </style>
@@ -115,8 +120,20 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
   <header style="display:flex;flex-direction:column;gap:12px">
     <a class="back" href="/projects">&larr; Ben L Torres / Projects</a>
     <h1>Beyond <span>the Template</span></h1>
-    <p class="lede">A SOC 2 is as good as the controls written into it. Each incident here is walked step by step. For every weak point you get the criterion, the control wording a template hands you, and a control written for that environment that would have addressed it.</p>
-    <p class="draft">Built from public disclosures. Template wording is generic paraphrase, not any vendor's text. Nothing here states what any company's report or controls actually said.</p>
+    <section class="intro" aria-label="Introduction">
+      <p class="lede">The argument heard across Twitter and LinkedIn:</p>
+      <blockquote>&ldquo;That company that got breached had a SOC 2, so SOC 2 is a scam. It means nothing and does nothing. It&rsquo;s security <em>theatre</em>.&rdquo;</blockquote>
+      <p>The templated SOC 2 report you received is security theatre. A well-thought-out control framework, built on your environment and your operations and tied to the Trust Services Criteria, can actually work for you.</p>
+      <p>It doesn&rsquo;t make you breach-proof. Exactly zero frameworks or compliance programs can guarantee that.</p>
+      <p>Developing, and therefore including, customized controls that truly match what an organization does can deliver many times the value of a templated report.</p>
+      <p class="thesis">SOC 2 isn&rsquo;t a scam. A templated SOC 2 without proper diligence, however, is a waste of time.</p>
+    </section>
+    <section class="intro" aria-labelledby="what-this-is">
+      <h3 id="what-this-is">What this is</h3>
+      <p>Built from public disclosures as they come out, the library below shows how controls designed around an organization&rsquo;s own processes can be tied back to the Trust Services Criteria, included in a SOC 2 report, and mitigate the event or the exposure, or possibly prevent it altogether.</p>
+      <p>Each incident is walked step by step. For every weak point you get the criterion, the control wording a template hands you, and a control written for that environment.</p>
+    </section>
+    <p class="draft">These are not claims about any organization&rsquo;s actual reports. This is an illustrative exercise showing how a SOC 2 report can work for each organization. Template wording is generic paraphrase, not any vendor&rsquo;s text.</p>
   </header>
   <nav aria-label="Views">
     <a href="#incidents" data-v="incidents">Incidents</a>
