@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/longform/processing-integrity.md", "destination": "/longform/processing-integrity", "permanent": true },
+    { "source": "/longform/processing-integrity.md/", "destination": "/longform/processing-integrity", "permanent": true },
+    { "source": "/musings/airport-chilis.md", "destination": "/musings/airport-chilis", "permanent": true },
+    { "source": "/musings/airport-chilis.md/", "destination": "/musings/airport-chilis", "permanent": true }
+  ]
+}
