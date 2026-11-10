@@ -39,9 +39,11 @@ function detail(i) {
   <section class="btt-block"><h3>Attack path, criteria and controls</h3><ol class="btt-path">${i.steps.map((s, n) => `<li>
     <div class="btt-event">${s[0]}</div><div class="btt-tags">${codes(s[1])}${pill(s[2])}</div><div class="btt-why">${s[3]}</div>${cmp(CTRL[i.id][n])}
   </li>`).join("")}</ol></section>
-  <section class="btt-block"><h3>What held</h3><ul class="btt-held">${i.held.map(x => `<li>${x}</li>`).join("")}</ul></section>
-  <section class="btt-block"><h3>Questions a serious audit asks</h3><ul>${i.ask.map(x => `<li>${x}</li>`).join("")}</ul></section>
-  <section class="btt-block"><h3>Where SOC II stops</h3><p class="btt-stop">${i.stop}</p></section>
+  <section class="btt-block btt-summary"><h3>Summary</h3>
+    <div class="btt-sumpart"><h4>The risk</h4><p>${i.risk}</p></div>
+    <div class="btt-sumpart btt-sumhelp"><h4>How the custom controls help</h4><p>${i.help}</p></div>
+    <div class="btt-sumpart"><h4>Questions a serious SOC II audit asks of this environment</h4><ul>${i.ask.map(x => `<li>${x}</li>`).join("")}</ul></div>
+  </section>
   ${groups.map(([h, xs]) => `<section class="btt-block btt-src"><h3>${h}</h3><ul>${xs.map(x => `<li>${ext(x[1], x[0])}</li>`).join("")}</ul></section>`).join("")}`;
 }
 

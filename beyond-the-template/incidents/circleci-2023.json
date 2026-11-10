@@ -51,16 +51,13 @@
       "custom_control": "Use of production access tokens from outside company address ranges, and reads of customer secret stores with no linked deployment or support ticket, alert immediately."
     }
   ],
-  "held": [
-    "Production access was shut to nearly all staff, hosts were rotated and all project tokens revoked within about a day (CC7.4).",
-    "A detailed public report with indicators of compromise followed (CC2.3)."
-  ],
+  "risk": "A single engineer's laptop carried enough access to reach production and customer secrets. Malware stole a session that had already passed two-factor authentication, that engineer's role could mint production access tokens, and the keys protecting customer secrets were reachable from the same place, with the first sign of trouble coming from a customer rather than from internal monitoring.",
+  "control_summary": "Short-lived sessions bound to the device would have made the stolen session useless anywhere else, and replacing standing production access with time-limited, approved grants means a compromised laptop no longer amounts to production access. Keeping decryption keys in a hardware-backed service with logged, per-customer decrypt calls protects customer secrets even after an attacker is inside, and alerting on token use from outside company address ranges gives the security team its own early signal.",
   "auditor_questions": [
     "How long does an authenticated session live, and is it tied to the device?",
     "Who holds standing production access, and could it be granted on request instead?",
     "If one engineer laptop is compromised today, what is reachable?"
   ],
-  "limits": "No endpoint tool catches all malware, but SOC II can test what a compromised laptop is able to reach.",
   "sources": [
     {
       "label": "CircleCI: Incident report for the January 4, 2023 security incident",

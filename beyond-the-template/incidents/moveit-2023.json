@@ -49,15 +49,13 @@
       "custom_control": "A system job deletes files from the transfer server seven days after delivery. A weekly report lists any file older than that, and the expected count is zero."
     }
   ],
-  "held": [
-    "A government advisory with detection guidance was out within days of mass exploitation."
-  ],
+  "risk": "The incident began with a previously unknown flaw in widely used file transfer software, which no customer could have patched before it was published. How much each victim lost depended on choices they did control, including transfer servers open to the whole internet, outbound transfers large enough to look routine, and files left on servers long after they had been delivered.",
+  "control_summary": "For customers, no custom control stops exploitation of a flaw nobody has published, but restricting the server to named partner addresses, alerting on new files in the web root and on unusual outbound volume, and deleting files seven days after delivery all reduce how much an attacker could reach and take. For the vendor, injection testing of every unauthenticated endpoint before each release, backed by an annual independent penetration test, is aimed at catching the flaw itself before it ships.",
   "auditor_questions": [
     "Which internet-facing systems hold data at rest that should only pass through?",
     "Is retention on transfer servers enforced by the system or left to users?",
     "What does our vendor's report say about how it tests its own code?"
   ],
-  "limits": "This is the entry where the skeptics are mostly right, since no SOC II at a customer would have prevented exploitation of this flaw, though it could have reduced how much data was sitting on the server to take.",
   "sources": [
     {
       "label": "Progress Software: MOVEit Transfer critical vulnerability advisory (May 31, 2023)",

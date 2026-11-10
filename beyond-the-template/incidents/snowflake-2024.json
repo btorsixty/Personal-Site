@@ -49,15 +49,13 @@
       "custom_control": "A network policy limits data warehouse connections to company network ranges and named integration addresses. Changes to the policy need approval and raise an alert."
     }
   ],
-  "held": [
-    "The platform's own environment was not the way in."
-  ],
+  "risk": "The risk sat in how customers configured their own accounts on a platform whose environment was not breached. Passwords stolen by infostealer malware on contractor and personal machines, some of them years old, still worked because the affected accounts had no enforced MFA, no network allow list and no rotation, so a single valid password was all an attacker needed to reach a data warehouse.",
+  "control_summary": "Enforcing MFA at the tenant level, with a monthly report that is expected to show no exceptions, removes the single-password path by itself. Limiting connections to company network ranges and named integrations, moving users to SSO with local passwords disabled, and requiring contractors to work from managed devices each close another part of the same gap, and together they turn the vendor's list of customer responsibilities into controls the customer's own report can be tested on.",
   "auditor_questions": [
     "For each SaaS platform holding production data, is MFA enforced at tenant level or left to each user?",
     "Which complementary user entity controls in the vendor's report have we actually implemented?",
     "Do contractors reach our systems from devices we can inspect?"
   ],
-  "limits": "A vendor's clean report says nothing about how its customers configure their side of the platform, and the controls that failed here were the customers' own, the ones vendor reports list as user entity responsibilities.",
   "sources": [
     {
       "label": "Snowflake: Detecting and preventing unauthorized user access",

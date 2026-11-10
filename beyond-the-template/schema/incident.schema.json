@@ -3,7 +3,7 @@
   "title": "Incident entry",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id","name","period","began","category","status","summary","steps","held","auditor_questions","limits","sources","changelog"],
+  "required": ["id","name","period","began","category","status","summary","steps","risk","control_summary","auditor_questions","sources","changelog"],
   "properties": {
     "id": {"type":"string","pattern":"^[a-z0-9]+(-[a-z0-9]+)*$","description":"Matches the file name. Used as the page link."},
     "name": {"type":"string"},
@@ -24,9 +24,9 @@
         "custom_control":{"type":"string","description":"Control written for this environment. Written by the mapper."},
         "test":{"type":"string","description":"Optional. How an auditor would test the custom control."}
       }}},
-    "held": {"type":"array","items":{"type":"string"}},
+    "risk": {"type":"string","description":"Summary: the risk this environment carried, in a short paragraph drawn from the steps."},
+    "control_summary": {"type":"string","description":"Summary: how the custom controls in the steps would have helped in this scenario."},
     "auditor_questions": {"type":"array","minItems":1,"items":{"type":"string"}},
-    "limits": {"type":"string","description":"What SOC II could not have done here."},
     "sources": {"type":"array","minItems":1,"items":{"type":"object","additionalProperties":false,"required":["label","url"],"properties":{"label":{"type":"string"},"url":{"type":"string","pattern":"^https://"},"primary":{"type":"boolean"}}}},
     "changelog": {"type":"array","minItems":1,"items":{"type":"object","additionalProperties":false,"required":["date","note"],"properties":{"date":{"type":"string","pattern":"^\\d{4}-\\d{2}-\\d{2}$"},"note":{"type":"string"}}}},
     "mapper": {"type":"string"},

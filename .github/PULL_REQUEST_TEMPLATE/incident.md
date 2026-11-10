@@ -6,7 +6,7 @@ Closes #
 - [ ] Criteria confirmed for each step
 - [ ] Failure mode set, with inference kept to `rationale`
 - [ ] Custom control written for each step
-- [ ] `limits` says what SOC II could not have done
+- [ ] `risk` and `control_summary` written for the Summary section
 - [ ] `mapper` field filled in, status set to `in-review`
 
 **Second reviewer** (not the mapper)

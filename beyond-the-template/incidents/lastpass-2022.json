@@ -61,15 +61,13 @@
       "custom_control": "Every customer vault field, URLs and metadata included, is encrypted with keys derived from the customer's master password. Each schema change includes a review confirming no customer field is stored in plaintext."
     }
   ],
-  "held": [
-    "Access to the decryption keys was limited to four people, which narrowed the attacker's options to a targeted attack."
-  ],
+  "risk": "The keys protecting customer vault backups could be reached from an engineer's home computer, and material stolen in the first incident was still useful for choosing the target of the second. Once the attacker had a working session from that device, copying the encrypted backups looked like normal engineering activity, and some vault fields such as website URLs were stored without encryption.",
+  "control_summary": "Restricting the key vault to company-managed devices that pass a posture check would have made the home computer irrelevant, however thoroughly it was compromised. Closing an incident only after inventorying what was taken and rotating every exposed secret addresses the link between the two intrusions, and alerting on any human access to backup storage gives monitoring something specific to catch. Encrypting every vault field, metadata included, limits what a stolen backup reveals even when the other controls fail.",
   "auditor_questions": [
     "Can privileged secrets be reached from a device the company does not manage?",
     "When an incident closes, who decides what stolen material could enable next?",
     "Which customer data fields are encrypted at rest, and which are not?"
   ],
-  "limits": "A targeted attack on an employee's home network falls outside any service organization's boundary, so the most SOC II can test is whether a home device like that one was allowed to reach anything that mattered.",
   "sources": [
     {
       "label": "LastPass: Notice of security incident (Dec 22, 2022)",

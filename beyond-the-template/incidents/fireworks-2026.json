@@ -51,17 +51,13 @@
       "custom_control": "Before a security incident is closed, the response lead records every other environment where the compromised credentials or access path were valid and confirms each was reviewed. Closure needs sign-off from someone outside the response team."
     }
   ],
-  "held": [
-    "First intrusion detected and customer notices started within about a day (CC7.4, CC2.3).",
-    "Second intrusion detected the same day, per the company.",
-    "No card numbers were stored, so none were exposed."
-  ],
+  "risk": "Customer secrets and customer data were reachable from places that were never meant to hold them. Internal credentials could read the API keys sitting in customer evaluation jobs, and development machines hosted by an outside provider had a working route to billing records, datasets and model weights, which meant a breach at that provider became a breach at Fireworks.",
+  "control_summary": "The custom controls close those routes instead of relying on access being granted carefully. Holding customer secrets in a store that no employee credential can read would have kept the first intrusion from exposing customer keys, and storage that accepts only named production identities would have left an attacker on the development machines with nothing to reach. Listing every compute provider in the system description, and testing each quarter that unapproved hosts have no path to customer data, brings the outside host into the audit's view rather than leaving it beside the report.",
   "auditor_questions": [
     "Which environments hold or can reach customer data, and is every one of them in the system description?",
     "Where do customer-supplied secrets sit at rest, and which internal identities can read them?",
     "For each subservice organization, what does an attacker reach if it is compromised tomorrow?"
   ],
-  "limits": "A SOC II on Fireworks gives no assurance over the cloud host's own controls, and under the carve-out method that breach sits outside the report by design, although the report can still test how the host was chosen, how it was monitored and how well it was walled off from customer data.",
   "sources": [
     {
       "label": "Fireworks AI: Security bulletin on the October 2026 incident",

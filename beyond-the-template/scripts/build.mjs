@@ -22,7 +22,7 @@ for(const k in tsc)TSC[k]=[tsc[k].name,tsc[k].group];
 for(const k in modes)MODES[k]=[modes[k].label,modes[k].definition];
 const INC=inc.map(d=>{CTRL[d.id]=d.steps.map(s=>[s.template_control,s.custom_control]);
   return{id:d.id,name:d.name,date:d.period,cat:d.category,updated:live.includes(d.status)?d.changelog.at(-1).date:'Draft',sum:d.summary,
-    steps:d.steps.map(s=>[s.event,s.criteria,s.failure_mode,s.rationale]),held:d.held,ask:d.auditor_questions,stop:d.limits,src:d.sources.map(s=>[s.label,s.url,!!s.primary]),
+    steps:d.steps.map(s=>[s.event,s.criteria,s.failure_mode,s.rationale]),risk:d.risk,help:d.control_summary,ask:d.auditor_questions,src:d.sources.map(s=>[s.label,s.url,!!s.primary]),
     controls:d.steps.filter(s=>s.custom_control&&s.custom_control!=='TO WRITE').length}});
 const PREVIEW=demo?'demo':drafts?'local':'';
 const dest=out||path.resolve('../src/generated/beyond-the-template.json');

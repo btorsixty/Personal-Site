@@ -50,15 +50,13 @@
       "custom_control": "Backups of core claims and payment systems sit in an account and network that production credentials cannot reach. Those systems are fully restored into a clean environment each year against a stated recovery time."
     }
   ],
-  "held": [
-    "Connectivity to the affected data centers was cut once ransomware was found, limiting spread to the parent company."
-  ],
+  "risk": "An internet-facing remote access portal without MFA sat in an environment acquired two years earlier that had not yet been brought up to company standards. With stolen credentials the attacker had nine days to move through the network and take data before deploying ransomware, and recovery took weeks because backups were not separated well enough to restore from quickly.",
+  "control_summary": "A monthly scan that matches every external login page to evidence of enforced MFA would have caught the portal even though it sat outside the usual population, and a standard requiring acquired environments to be assessed within 90 days, and kept isolated until they pass, addresses why it was missed in the first place. Round-the-clock alerting on lateral movement, tested twice a year, targets the nine days, while backups kept where production credentials cannot reach them and fully restored each year against a stated recovery time target the weeks of disruption that followed.",
   "auditor_questions": [
     "How do we prove the MFA population is complete, including acquired and legacy systems?",
     "What is the plan for controls over an acquisition between close and full integration?",
     "When did we last restore core services from backup under realistic conditions?"
   ],
-  "limits": "No report can rule out an attacker who holds valid credentials, but SOC II can test whether a single password was enough to get in.",
   "sources": [
     {
       "label": "UnitedHealth Group: Form 8-K cybersecurity incident filing (Feb 22, 2024)",
