@@ -27,4 +27,5 @@ These are proposed defaults. Each one is a decision for the editor to confirm or
 - After 90 quiet days the status moves to closed.
 
 ## House style
-- Write "SOC II", never "SOC 2". It is the house spelling across this site.
+- Write "SOC II" rather than "SOC 2", since that is the house spelling across this site and its other articles.
+- Avoid closing a paragraph with a pair of short, punchy sentences or setting up a point in one clipped sentence and paying it off in the next, because that cadence reads as machine-written; carry the reasoning through connected sentences instead.

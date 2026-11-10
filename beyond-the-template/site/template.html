@@ -148,7 +148,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 /*__DATA__*/
 const $=s=>document.querySelector(s);
 const view=$("#view");
-if(PREVIEW)$(".wrap").insertAdjacentHTML("afterbegin",`<p class="preview-banner" role="note"><b>Local draft preview.</b> Includes unreviewed entries. Never published; the site build ships signed-off entries only.</p>`);
+if(PREVIEW)$(".wrap").insertAdjacentHTML("afterbegin",`<p class="preview-banner" role="note"><b>Local draft preview:</b> this copy includes unreviewed entries and is never published, since the site build only ships entries that have been signed off.</p>`);
 let cat="All";
 const pill=m=>`<span class="pill m-${m}">${MODES[m][0]}</span>`;
 const cmp=c=>`<div class="cmp"><div class="tpl"><b>Template control</b>${c[0]}</div><div class="cus"><b>Written for this environment</b>${c[1]}</div></div>`;
@@ -193,7 +193,8 @@ function failureModes(){
   const steps=allSteps(),n=steps.length,count=m=>steps.filter(s=>s.mode===m).length;
   const max=Math.max(...Object.keys(MODES).map(count));
   const inReach=n-count("beyond")-count("open");
-  view.innerHTML=`<p class="finding">Of ${n} mapped steps across ${INC.length} incidents, <em>${count("beyond")}</em> sat beyond what SOC II criteria address. <em>${inReach}</em> were within reach of a criterion and failed on scope, design or operation. Generic wording can pass testing in all three cases. A control written for the environment closes them.</p>
+  view.innerHTML=`<p class="finding">Of ${n} mapped steps across ${INC.length} incidents, <em>${inReach}</em> were within reach of a SOC II criterion and failed on scope, design or operation.</p>
+  <p>Of the rest, ${count("beyond")} sat beyond what the criteria address and ${count("open")} had too little public detail to judge. Whether a step failed on scope, design or operation, generic control wording can still pass an auditor&rsquo;s testing, which is why the custom controls in this library are written around each organization&rsquo;s actual environment.</p>
   
   <div class="modes">${Object.keys(MODES).map(m=>`<div class="mode m-${m}"><div class="row"><span class="lab">${MODES[m][0]}</span><span class="n">${count(m)}</span></div>
   <div class="track"><i style="width:${count(m)/max*100}%"></i></div><p>${MODES[m][1]}</p>

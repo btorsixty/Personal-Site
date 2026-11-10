@@ -1,7 +1,7 @@
 {
   "scope": {
     "label": "Outside the boundary",
-    "definition": "The system or party was likely never in the tested population. The criteria applied, the scoping did not reach."
+    "definition": "The system or party was likely never in the tested population, so even though the criteria applied, the scoping of the report did not reach it."
   },
   "design": {
     "label": "Control design",
@@ -13,7 +13,7 @@
   },
   "beyond": {
     "label": "Beyond SOC II",
-    "definition": "No criterion reasonably prevents this step. Included so the library stays honest."
+    "definition": "No criterion would reasonably have prevented this step, and it is included because leaving it out would overstate what SOC II can do."
   },
   "open": {
     "label": "Not public",
