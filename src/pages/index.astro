@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { postUrl } from '../lib/posts';
+import { Image } from 'astro:assets';
+import portrait from '../assets/ben-piano.jpg';
 const recent = (await getCollection('posts', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 4);
@@ -34,8 +36,8 @@ const sectionName = { longform: 'Longform', 'short-articles': 'Short Article', c
         <p class="disclaimer">All opinions here are my own and do not reflect those of my employers.</p>
       </div>
       <div class="portrait glass">
+        <Image src={portrait} alt="Ben at a grand piano with his daughter on his lap" widths={[400, 640, 900]} sizes="(max-width: 900px) 320px, 420px" class="photo" loading="eager" />
         <div class="ring"></div>
-        <span class="initials">BLT</span>
       </div>
     </div>
   </header>
