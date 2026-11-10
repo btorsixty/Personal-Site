@@ -1,0 +1,22 @@
+{
+  "scope": {
+    "label": "Outside the boundary",
+    "definition": "The system or party was likely never in the tested population. The criteria applied, the scoping did not reach."
+  },
+  "design": {
+    "label": "Control design",
+    "definition": "A control existed or could have, and as designed it would not have stopped this step."
+  },
+  "operation": {
+    "label": "Control operation",
+    "definition": "The control was defined and did not work on the day, or did not cover the whole population."
+  },
+  "beyond": {
+    "label": "Beyond SOC 2",
+    "definition": "No criterion reasonably prevents this step. Included so the library stays honest."
+  },
+  "open": {
+    "label": "Not public",
+    "definition": "Not enough has been disclosed to say how a control would have failed."
+  }
+}

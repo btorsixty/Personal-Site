@@ -1,0 +1,77 @@
+{
+  "id": "change-healthcare-2024",
+  "name": "Change Healthcare",
+  "period": "Feb 2024",
+  "category": "Ransomware",
+  "status": "drafted",
+  "summary": "Stolen credentials on a remote access portal without MFA led to nine days of quiet movement, then ransomware that disrupted US healthcare payments for weeks. A $22 million ransom was reportedly paid.",
+  "steps": [
+    {
+      "event": "On Feb 12 the attacker logged in to a Citrix remote access portal with compromised credentials. The portal had no MFA.",
+      "criteria": [
+        "CC6.1",
+        "CC6.6"
+      ],
+      "failure_mode": "operation",
+      "rationale": "Company policy called for MFA on external-facing systems. This portal was missing from the population the control covered.",
+      "template_control": "MFA is required for remote access.",
+      "custom_control": "A monthly external scan lists every internet-facing login page, and each one is matched to evidence of enforced MFA. An unmatched entry is fixed or taken offline within five business days."
+    },
+    {
+      "event": "The portal belonged to an environment acquired in 2022 that was still being upgraded.",
+      "criteria": [
+        "CC3.4"
+      ],
+      "failure_mode": "scope",
+      "rationale": "Acquired systems tend to sit outside the control set until integration finishes, and attackers do not wait for that.",
+      "template_control": "Risk assessments are performed annually.",
+      "custom_control": "Within 90 days of an acquisition closing, the acquired environment's external access points, privileged accounts and backups are assessed against company standards. Until gaps are closed the environment stays network-isolated from the parent."
+    },
+    {
+      "event": "The attacker moved through the network and took data for nine days before deploying ransomware on Feb 21.",
+      "criteria": [
+        "CC7.2"
+      ],
+      "failure_mode": "operation",
+      "rationale": "Nine days of lateral movement and exfiltration passed without a detection that led to action.",
+      "template_control": "Intrusion detection is in place.",
+      "custom_control": "Signs of lateral movement, such as new remote sessions between servers and credential dumping tools, alert a team staffed around the clock. A simulated intrusion twice a year measures time from first movement to alert."
+    },
+    {
+      "event": "Systems were encrypted and restoration took weeks.",
+      "criteria": [
+        "A1.2",
+        "CC7.5"
+      ],
+      "failure_mode": "design",
+      "rationale": "Recovery depended on rebuilding. Backups were not set apart well enough to restore quickly.",
+      "template_control": "Backups are performed daily and tested annually.",
+      "custom_control": "Backups of core claims and payment systems sit in an account and network that production credentials cannot reach. Those systems are fully restored into a clean environment each year against a stated recovery time."
+    }
+  ],
+  "held": [
+    "Connectivity to the affected data centers was cut once ransomware was found, limiting spread to the parent company."
+  ],
+  "auditor_questions": [
+    "How do we prove the MFA population is complete, including acquired and legacy systems?",
+    "What is the plan for controls over an acquisition between close and full integration?",
+    "When did we last restore core services from backup under realistic conditions?"
+  ],
+  "limits": "An attacker holding valid credentials cannot be ruled out by any report. SOC 2 can test whether one password was enough.",
+  "sources": [
+    {
+      "label": "TechTarget on the congressional testimony",
+      "url": "https://www.techtarget.com/searchsecurity/news/366582824/Change-Healthcare-breached-via-Citrix-portal-with-no-MFA"
+    },
+    {
+      "label": "Healthcare Dive",
+      "url": "https://www.healthcaredive.com/news/unitedhealth-change-attack-tech-takeaways/715274/"
+    }
+  ],
+  "changelog": [
+    {
+      "date": "2026-11-10",
+      "note": "Seed draft from public sources. Not yet reviewed."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+name: Incident candidate
+description: A security incident that may belong in the library
+title: "Candidate: "
+labels: [candidate]
+body:
+  - type: input
+    id: org
+    attributes: {label: Organization}
+    validations: {required: true}
+  - type: textarea
+    id: what
+    attributes: {label: What is publicly known, description: Three or four sentences. Facts from the sources only.}
+    validations: {required: true}
+  - type: textarea
+    id: sources
+    attributes: {label: Sources, description: One link per line. Mark the company's own account as primary.}
+    validations: {required: true}
+  - type: checkboxes
+    id: bar
+    attributes:
+      label: Inclusion rules
+      options:
+        - label: Root cause is public from a primary source
+        - label: At least three steps can be mapped
+        - label: Teaches something about control design
+  - type: dropdown
+    id: category
+    attributes: {label: Event category, options: [Third party, Credential compromise, Endpoint compromise, Ransomware, Software vulnerability, Insider, Misconfiguration]}

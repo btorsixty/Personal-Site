@@ -1,0 +1,17 @@
+name: Update to a published entry
+description: New facts about an incident already in the library
+title: "Update: "
+labels: [update]
+body:
+  - type: input
+    id: entry
+    attributes: {label: Entry id}
+    validations: {required: true}
+  - type: textarea
+    id: change
+    attributes: {label: What changed, description: Quote nothing at length. Say what is new and which steps it affects.}
+    validations: {required: true}
+  - type: textarea
+    id: sources
+    attributes: {label: New sources}
+    validations: {required: true}

@@ -1,0 +1,13 @@
+name: Validate library entries
+on:
+  pull_request:
+    paths: ['beyond-the-template/**']
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - run: node beyond-the-template/scripts/validate.mjs
+      - run: INCLUDE_DRAFTS=1 node beyond-the-template/scripts/build.mjs

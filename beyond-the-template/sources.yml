@@ -1,0 +1,19 @@
+# Where the intake agent looks each day. Owned by the source-list owner. Add or remove through a pull request.
+primary:            # a company's or regulator's own account. Required before an entry can publish.
+  - name: SEC 8-K Item 1.05 filings
+    how: search EDGAR full-text for "Item 1.05" filed in the last 2 days
+  - name: CISA advisories
+    url: https://www.cisa.gov/news-events/cybersecurity-advisories
+  - name: Vendor security bulletins and trust pages
+    how: follow links from secondary coverage to the company's own post
+  - name: State attorney general breach notices
+    how: California, Maine, Massachusetts and Washington portals
+secondary:          # used to find candidates and corroborate. Never the only source for a published step.
+  - name: BleepingComputer
+    url: https://www.bleepingcomputer.com/news/security/
+  - name: The Record
+    url: https://therecord.media/
+  - name: SecurityWeek
+    url: https://www.securityweek.com/
+  - name: Krebs on Security
+    url: https://krebsonsecurity.com/

@@ -1,0 +1,88 @@
+{
+  "id": "lastpass-2022",
+  "name": "LastPass",
+  "period": "Aug to Oct 2022",
+  "category": "Endpoint compromise",
+  "status": "drafted",
+  "summary": "A first intrusion took source code and technical detail. That material was then used to target one of four engineers with access to backup decryption keys, through an unpatched media server on a home computer.",
+  "steps": [
+    {
+      "event": "An engineer's corporate laptop was compromised and source code and technical information left the development environment.",
+      "criteria": [
+        "CC6.8",
+        "CC6.1"
+      ],
+      "failure_mode": "open",
+      "rationale": "The initial compromise method has not been described in enough detail to map.",
+      "template_control": "Endpoints run anti-malware software.",
+      "custom_control": "Developer laptops reach source repositories only with short-lived, device-bound credentials. Clone or bulk download activity above a set baseline alerts the security team."
+    },
+    {
+      "event": "Information from the first incident was used to pick out one of four DevOps engineers who could reach the decryption keys.",
+      "criteria": [
+        "CC7.4",
+        "CC7.5"
+      ],
+      "failure_mode": "operation",
+      "rationale": "The first incident was treated as closed while what had been taken was still useful to the attacker.",
+      "template_control": "An incident response plan is documented and tested annually.",
+      "custom_control": "Incident closure includes a written inventory of what was taken and which people, systems and secrets it exposes. Each exposed secret is rotated and each exposed person's access paths are reviewed before the incident is closed."
+    },
+    {
+      "event": "The engineer's home computer was exploited through an unpatched Plex install, and a keylogger captured the master password after MFA.",
+      "criteria": [
+        "CC6.7",
+        "CC6.8"
+      ],
+      "failure_mode": "scope",
+      "rationale": "A personal device could open the corporate vault holding the most sensitive keys. Unmanaged endpoints are rarely in the tested population.",
+      "template_control": "Remote access requires MFA.",
+      "custom_control": "The vault holding backup decryption keys opens only from company-managed devices that pass a posture check. Personal devices are blocked at the identity provider, proven quarterly by an attempted login from an unmanaged device."
+    },
+    {
+      "event": "With valid credentials the attacker copied encrypted backups from cloud storage, and the activity was hard to tell from normal use.",
+      "criteria": [
+        "CC7.2"
+      ],
+      "failure_mode": "operation",
+      "rationale": "Monitoring was in place and did not separate a legitimate engineer from someone using that engineer's access.",
+      "template_control": "Cloud infrastructure is monitored for security events.",
+      "custom_control": "Routine access to backup storage is by service role only. Any access by a human identity alerts on use, and bulk object reads above a set threshold page the on-call engineer."
+    },
+    {
+      "event": "Customer vault backups were taken, with some fields such as website URLs stored unencrypted.",
+      "criteria": [
+        "C1.1"
+      ],
+      "failure_mode": "design",
+      "rationale": "Which vault fields were encrypted was a product design decision.",
+      "template_control": "Customer data is encrypted at rest.",
+      "custom_control": "Every customer vault field, URLs and metadata included, is encrypted with keys derived from the customer's master password. Each schema change includes a review confirming no customer field is stored in plaintext."
+    }
+  ],
+  "held": [
+    "Access to the decryption keys was limited to four people, which narrowed the attacker's options to a targeted attack."
+  ],
+  "auditor_questions": [
+    "Can privileged secrets be reached from a device the company does not manage?",
+    "When an incident closes, who decides what stolen material could enable next?",
+    "Which customer data fields are encrypted at rest, and which are not?"
+  ],
+  "limits": "A targeted attack on an employee's home network is outside any service organization's boundary. SOC 2 can only test whether that home device was allowed to matter.",
+  "sources": [
+    {
+      "label": "CSO Online",
+      "url": "https://www.csoonline.com/article/3688922/hacked-home-computer-of-engineer-led-to-second-lastpass-data-breach.html"
+    },
+    {
+      "label": "Computer Weekly",
+      "url": "https://www.computerweekly.com/news/365531867/LastPass-attack-saw-employees-home-computer-hacked"
+    }
+  ],
+  "changelog": [
+    {
+      "date": "2026-11-10",
+      "note": "Seed draft from public sources. Not yet reviewed."
+    }
+  ]
+}

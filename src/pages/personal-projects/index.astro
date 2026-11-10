@@ -22,7 +22,7 @@ const yr = (d) => new Date(d).getFullYear();
       <a
         href={p.data.link || p.data.repo || '#'}
         class="entry reveal"
-        target={(p.data.link || p.data.repo) ? '_blank' : null}
+        target={/^https?:/.test(p.data.link || p.data.repo || '') ? '_blank' : null}
         rel="noopener"
         data-year={String(yr(p.data.date))}
       >

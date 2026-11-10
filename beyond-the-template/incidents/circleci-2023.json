@@ -1,0 +1,75 @@
+{
+  "id": "circleci-2023",
+  "name": "CircleCI",
+  "period": "Dec 2022 to Jan 2023",
+  "category": "Endpoint compromise",
+  "status": "drafted",
+  "summary": "Malware on one engineer's laptop stole an authenticated session. That session could mint production access tokens, and customer secrets were taken.",
+  "steps": [
+    {
+      "event": "Malware on an engineer's laptop stole a valid SSO session that had already passed two-factor authentication.",
+      "criteria": [
+        "CC6.8",
+        "CC6.1"
+      ],
+      "failure_mode": "design",
+      "rationale": "MFA protects the login. A stolen post-login session walks past it unless sessions are short or bound to the device.",
+      "template_control": "MFA is required for access to company systems.",
+      "custom_control": "SSO sessions for staff with production access expire after a set number of hours and are bound to the device certificate. A session presented from another device is rejected and alerted on."
+    },
+    {
+      "event": "The engineer's role could generate production access tokens, and the attacker used that to reach production.",
+      "criteria": [
+        "CC6.1",
+        "CC6.3"
+      ],
+      "failure_mode": "design",
+      "rationale": "Standing production privilege on a daily-use account meant one laptop equalled production.",
+      "template_control": "Production access is restricted to authorized personnel.",
+      "custom_control": "No employee holds a standing ability to generate production access tokens. Access is granted per request, for a limited time, with a second person's approval, and every grant is logged."
+    },
+    {
+      "event": "Customer environment variables, tokens and keys were taken, with encryption keys pulled from a running process.",
+      "criteria": [
+        "C1.1",
+        "CC6.1"
+      ],
+      "failure_mode": "design",
+      "rationale": "Data was encrypted at rest and the keys were reachable from the same place the attacker landed.",
+      "template_control": "Data is encrypted at rest.",
+      "custom_control": "Keys that decrypt customer secrets are held in a hardware-backed key service and never sit in application memory in exportable form. Decrypt calls are logged per customer and alert on unusual volume."
+    },
+    {
+      "event": "A customer's report of suspicious activity on Dec 29 started the investigation.",
+      "criteria": [
+        "CC7.2"
+      ],
+      "failure_mode": "operation",
+      "rationale": "The first signal came from outside. Internal monitoring had not flagged the session.",
+      "template_control": "Logs are collected and monitored.",
+      "custom_control": "Use of production access tokens from outside company address ranges, and reads of customer secret stores with no linked deployment or support ticket, alert immediately."
+    }
+  ],
+  "held": [
+    "Production access was shut to nearly all staff, hosts were rotated and all project tokens revoked within about a day (CC7.4).",
+    "A detailed public report with indicators of compromise followed (CC2.3)."
+  ],
+  "auditor_questions": [
+    "How long does an authenticated session live, and is it tied to the device?",
+    "Who holds standing production access, and could it be granted on request instead?",
+    "If one engineer laptop is compromised today, what is reachable?"
+  ],
+  "limits": "No endpoint tool catches all malware. SOC 2 can test what a compromised laptop is able to reach.",
+  "sources": [
+    {
+      "label": "CircleCI incident report",
+      "url": "https://circleci.com/blog/jan-4-2023-incident-report"
+    }
+  ],
+  "changelog": [
+    {
+      "date": "2026-11-10",
+      "note": "Seed draft from public sources. Not yet reviewed."
+    }
+  ]
+}

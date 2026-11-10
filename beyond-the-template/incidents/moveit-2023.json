@@ -1,0 +1,72 @@
+{
+  "id": "moveit-2023",
+  "name": "MOVEit Transfer",
+  "period": "May to Jun 2023",
+  "category": "Software vulnerability",
+  "status": "drafted",
+  "summary": "A ransomware group used an unknown SQL injection flaw in a widely used file transfer product to copy data from internet-facing servers across a very large number of organizations.",
+  "steps": [
+    {
+      "event": "From May 27 the CL0P group exploited a previously unknown SQL injection flaw in MOVEit Transfer.",
+      "criteria": [
+        "CC7.1"
+      ],
+      "failure_mode": "beyond",
+      "rationale": "For the product's customers, scanning and patching cannot find a flaw nobody has published.",
+      "template_control": "Vulnerability scans run quarterly and critical findings are patched within 30 days.",
+      "custom_control": "Internet-facing file transfer systems sit behind a web application firewall with injection rules. Emergency vendor advisories for them are actioned within 24 hours, including taking the system offline when no patch exists. This narrows the window. It does not close it."
+    },
+    {
+      "event": "The flaw was in the vendor's shipped code.",
+      "criteria": [
+        "CC8.1"
+      ],
+      "failure_mode": "design",
+      "rationale": "For the vendor, injection flaws are what secure development testing is meant to catch before release.",
+      "template_control": "Code changes are peer reviewed and tested before release.",
+      "custom_control": "Every release is tested for injection against all endpoints that accept unauthenticated input, by automated and manual means, and the product gets an independent penetration test at least annually."
+    },
+    {
+      "event": "Internet-facing servers were given a web shell and their databases were copied out.",
+      "criteria": [
+        "CC6.6",
+        "CC7.2"
+      ],
+      "failure_mode": "design",
+      "rationale": "The servers faced the open internet by design, and large outbound transfers from them were normal enough to pass unnoticed.",
+      "template_control": "Firewalls restrict network traffic.",
+      "custom_control": "The transfer server accepts connections only from named partner addresses. Outbound data volume and new files in the web root are monitored, and either one raises an alert."
+    },
+    {
+      "event": "How much each victim lost depended on how much was sitting on the server.",
+      "criteria": [
+        "C1.2"
+      ],
+      "failure_mode": "operation",
+      "rationale": "Transfer servers are meant to be a waypoint. Retention rules that existed on paper were not clearing files in practice.",
+      "template_control": "Data is retained and disposed of according to policy.",
+      "custom_control": "A system job deletes files from the transfer server seven days after delivery. A weekly report lists any file older than that, and the expected count is zero."
+    }
+  ],
+  "held": [
+    "A government advisory with detection guidance was out within days of mass exploitation."
+  ],
+  "auditor_questions": [
+    "Which internet-facing systems hold data at rest that should only pass through?",
+    "Is retention on transfer servers enforced by the system or left to users?",
+    "What does our vendor's report say about how it tests its own code?"
+  ],
+  "limits": "This is the entry where the skeptics are mostly right. No SOC 2 at a customer would have prevented exploitation of this flaw. What it could have reduced is how much was there to take.",
+  "sources": [
+    {
+      "label": "CISA and FBI advisory announcement",
+      "url": "https://cisa.gov/news-events/news/cisa-and-fbi-release-advisory-cl0p-ransomware-gang-exploiting-moveit-vulnerability"
+    }
+  ],
+  "changelog": [
+    {
+      "date": "2026-11-10",
+      "note": "Seed draft from public sources. Not yet reviewed."
+    }
+  ]
+}

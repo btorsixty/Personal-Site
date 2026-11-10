@@ -1,0 +1,84 @@
+{
+  "id": "okta-2023",
+  "name": "Okta support system",
+  "period": "Sep to Oct 2023",
+  "category": "Credential compromise",
+  "status": "drafted",
+  "summary": "A service account for the support case system was used to open files for 134 customers. Troubleshooting files held live session tokens, and five customer sessions were hijacked.",
+  "steps": [
+    {
+      "event": "The service account's credential had been saved to an employee's personal Google profile, signed in on a company laptop.",
+      "criteria": [
+        "CC6.1",
+        "CC6.7"
+      ],
+      "failure_mode": "design",
+      "rationale": "Personal browser profiles were allowed on managed devices, so a company credential could sync to an account the company did not control.",
+      "template_control": "Passwords are stored in an approved password manager.",
+      "custom_control": "Managed browsers block sign-in to personal profiles and block password sync to non-company accounts. The setting is enforced by device policy and checked monthly against the full device fleet."
+    },
+    {
+      "event": "The service account could view and update every support case, and was used that way from Sep 28 to Oct 17.",
+      "criteria": [
+        "CC6.1",
+        "CC6.3"
+      ],
+      "failure_mode": "design",
+      "rationale": "A shared, password-only account with broad read access is a standing exception to least privilege.",
+      "template_control": "Access is granted by role and reviewed quarterly.",
+      "custom_control": "Service accounts in the support system are inventoried with a named owner, limited to the cases their function needs, and authenticate with rotated keys instead of passwords. An interactive login by a service account alerts the security team."
+    },
+    {
+      "event": "Customer-uploaded HAR files contained session tokens, which were replayed against customer tenants.",
+      "criteria": [
+        "CC6.7",
+        "C1.1"
+      ],
+      "failure_mode": "design",
+      "rationale": "Uploaded files were stored as received. Nothing stripped credentials, and tokens were not bound to a network or device.",
+      "template_control": "Customer data is encrypted in transit and at rest.",
+      "custom_control": "Files uploaded to support cases are scanned on receipt, and session tokens and cookies are stripped before storage. Administrator sessions are bound to the originating network, so a copied token fails elsewhere."
+    },
+    {
+      "event": "Customers noticed first. Okta tied the activity to the service account once a customer supplied an attacker IP address.",
+      "criteria": [
+        "CC7.2"
+      ],
+      "failure_mode": "operation",
+      "rationale": "Logs existed. The file-view events that showed the access were not what was being watched.",
+      "template_control": "Security events are logged and reviewed.",
+      "custom_control": "File view and download events in the support system go to the SIEM, with alerts for access by service accounts and for volume above a per-user baseline. Alerts are triaged within one business day."
+    },
+    {
+      "event": "The support system was described as separate from the production service.",
+      "criteria": [
+        "CC9.2"
+      ],
+      "failure_mode": "scope",
+      "rationale": "Support tooling often sits outside the system description while holding material that unlocks production tenants.",
+      "template_control": "The system description covers the production environment.",
+      "custom_control": "Any system that stores customer authentication material, support and ticketing tools included, is inside the system boundary and held to the same access and monitoring controls as production."
+    }
+  ],
+  "held": [
+    "Customers' own detection caught the token replay, which is the complementary user entity control working as intended."
+  ],
+  "auditor_questions": [
+    "Which non-production systems hold customer authentication material, and are they in scope?",
+    "How are service accounts inventoried, vaulted and rotated, and who reviews their activity?",
+    "What stops a company credential from syncing to a personal account?"
+  ],
+  "limits": "SOC 2 does not test what customers choose to upload, and theft from an employee's personal account happens where no company control can see.",
+  "sources": [
+    {
+      "label": "Okta root cause and remediation",
+      "url": "https://sec.okta.com/articles/2023/11/unauthorized-access-oktas-support-case-management-system-root-cause/"
+    }
+  ],
+  "changelog": [
+    {
+      "date": "2026-11-10",
+      "note": "Seed draft from public sources. Not yet reviewed."
+    }
+  ]
+}

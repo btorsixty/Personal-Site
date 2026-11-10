@@ -1,0 +1,80 @@
+{
+  "id": "fireworks-2026",
+  "name": "Fireworks AI",
+  "period": "Oct to Nov 2026",
+  "category": "Third party",
+  "status": "drafted",
+  "summary": "Two intrusions in one month. Misused internal credentials exposed secrets in customer evaluation jobs. Then a breach at an outside cloud host carrying R&D machines became a path to billing data, datasets and partial model weights.",
+  "steps": [
+    {
+      "event": "Internal credentials were misused and environment variables in evaluation jobs, holding customer API keys and tokens, were read.",
+      "criteria": [
+        "CC6.1"
+      ],
+      "failure_mode": "design",
+      "rationale": "Customer secrets readable through internal credentials is a question of how secrets are stored and which identities can reach them.",
+      "template_control": "Access to production systems requires unique credentials and is limited to authorized personnel.",
+      "custom_control": "Customer-supplied secrets used in evaluation jobs are held in a dedicated secrets store and injected at runtime. No employee or internal service credential can read them in plaintext, and every read of the store is logged and alerted on."
+    },
+    {
+      "event": "A third-party cloud provider hosting R&D machines was breached, and the attacker reached Fireworks development machines the next day.",
+      "criteria": [
+        "CC9.2",
+        "CC6.6"
+      ],
+      "failure_mode": "scope",
+      "rationale": "Whether the R&D environment and its host sat inside the system description is not public. If they sat outside, no test touched them.",
+      "template_control": "Vendors are assessed annually and their SOC 2 reports are reviewed.",
+      "custom_control": "Every provider hosting company compute, R&D included, is listed in the system description with the data and networks its machines can reach. Hosts not approved for customer data have no network route or credentials to environments that hold it, confirmed quarterly by a connectivity test."
+    },
+    {
+      "event": "An unauthorized workload run from those development machines reached billing records, datasets and incomplete model weights.",
+      "criteria": [
+        "CC6.1",
+        "CC6.6"
+      ],
+      "failure_mode": "design",
+      "rationale": "Development machines with a route to customer data is a segregation problem, whatever the entry point.",
+      "template_control": "Development and production environments are logically separated.",
+      "custom_control": "Workloads launched from development or research machines cannot authenticate to billing, dataset or model storage. Those stores accept only named production service identities, and an attempt from any other source raises an alert."
+    },
+    {
+      "event": "The second intrusion landed about two weeks after the first was contained.",
+      "criteria": [
+        "CC7.4",
+        "CC7.5"
+      ],
+      "failure_mode": "open",
+      "rationale": "The second route was a different vector. Public facts do not show whether the first response could have found it.",
+      "template_control": "An incident response plan is documented and tested annually.",
+      "custom_control": "Before a security incident is closed, the response lead records every other environment where the compromised credentials or access path were valid and confirms each was reviewed. Closure needs sign-off from someone outside the response team."
+    }
+  ],
+  "held": [
+    "First intrusion detected and customer notices started within about a day (CC7.4, CC2.3).",
+    "Second intrusion detected the same day, per the company.",
+    "No card numbers were stored, so none were exposed."
+  ],
+  "auditor_questions": [
+    "Which environments hold or can reach customer data, and is every one of them in the system description?",
+    "Where do customer-supplied secrets sit at rest, and which internal identities can read them?",
+    "For each subservice organization, what does an attacker reach if it is compromised tomorrow?"
+  ],
+  "limits": "A SOC 2 on Fireworks gives no assurance over the cloud host's own controls. Under the carve-out method that breach sits outside the report by design. What SOC 2 can test is how the host was chosen, monitored and walled off.",
+  "sources": [
+    {
+      "label": "Fireworks security bulletin",
+      "url": "https://fireworks.ai/security/bulletins/october-2026-security-incident"
+    },
+    {
+      "label": "BleepingComputer",
+      "url": "https://www.bleepingcomputer.com/news/security/fireworks-ai-discloses-new-breach-after-cloud-provider-hack/"
+    }
+  ],
+  "changelog": [
+    {
+      "date": "2026-11-10",
+      "note": "Seed draft from public sources. Not yet reviewed."
+    }
+  ]
+}

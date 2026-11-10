@@ -1,0 +1,66 @@
+{
+  "CC2.3": {
+    "name": "Communication with outside parties",
+    "group": "CC2 Communication"
+  },
+  "CC3.4": {
+    "name": "Assessing changes that affect controls",
+    "group": "CC3 Risk assessment"
+  },
+  "CC6.1": {
+    "name": "Logical access security",
+    "group": "CC6 Logical access"
+  },
+  "CC6.3": {
+    "name": "Role-based access and least privilege",
+    "group": "CC6 Logical access"
+  },
+  "CC6.6": {
+    "name": "Boundary protection against outside threats",
+    "group": "CC6 Logical access"
+  },
+  "CC6.7": {
+    "name": "Data movement and endpoint restrictions",
+    "group": "CC6 Logical access"
+  },
+  "CC6.8": {
+    "name": "Malicious software prevention",
+    "group": "CC6 Logical access"
+  },
+  "CC7.1": {
+    "name": "Vulnerability detection",
+    "group": "CC7 System operations"
+  },
+  "CC7.2": {
+    "name": "Security event monitoring",
+    "group": "CC7 System operations"
+  },
+  "CC7.4": {
+    "name": "Incident response",
+    "group": "CC7 System operations"
+  },
+  "CC7.5": {
+    "name": "Recovery and root-cause remediation",
+    "group": "CC7 System operations"
+  },
+  "CC8.1": {
+    "name": "Change management and secure development",
+    "group": "CC8 Change management"
+  },
+  "CC9.2": {
+    "name": "Vendor and business partner risk",
+    "group": "CC9 Risk mitigation"
+  },
+  "A1.2": {
+    "name": "Backups and recovery infrastructure",
+    "group": "A1 Availability"
+  },
+  "C1.1": {
+    "name": "Protecting confidential information",
+    "group": "C1 Confidentiality"
+  },
+  "C1.2": {
+    "name": "Disposal of confidential information",
+    "group": "C1 Confidentiality"
+  }
+}

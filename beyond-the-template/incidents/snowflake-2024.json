@@ -1,0 +1,72 @@
+{
+  "id": "snowflake-2024",
+  "name": "Snowflake customer accounts",
+  "period": "Apr to Jun 2024",
+  "category": "Credential compromise",
+  "status": "drafted",
+  "summary": "About 165 organizations were notified after an attacker logged in to their Snowflake instances with stolen passwords. Investigators found no breach of Snowflake's own environment.",
+  "steps": [
+    {
+      "event": "Infostealer malware on machines Snowflake did not own, some of them personal or contractor devices, collected customer logins as far back as 2020.",
+      "criteria": [
+        "CC6.8",
+        "CC9.2"
+      ],
+      "failure_mode": "scope",
+      "rationale": "Contractor and personal machines sat outside each victim's boundary while holding credentials to its data warehouse.",
+      "template_control": "Vendors and contractors agree to security requirements.",
+      "custom_control": "Contractors reach company data platforms only from company-issued devices or a managed virtual desktop. Data platform credentials do not work from unmanaged devices."
+    },
+    {
+      "event": "Those credentials still worked years later.",
+      "criteria": [
+        "CC6.1"
+      ],
+      "failure_mode": "operation",
+      "rationale": "Password rotation and review of stale accounts were defined in most programs and had not happened for these accounts.",
+      "template_control": "Passwords meet complexity requirements.",
+      "custom_control": "Data warehouse users authenticate through SSO only. Local passwords are disabled, and a monthly query confirms no user has a password set or a key older than 90 days."
+    },
+    {
+      "event": "The affected accounts did not require MFA.",
+      "criteria": [
+        "CC6.1"
+      ],
+      "failure_mode": "design",
+      "rationale": "MFA was available and enrolled per user. It was not enforced for the tenant.",
+      "template_control": "MFA is required for access to production systems.",
+      "custom_control": "MFA is enforced at tenant level in the data warehouse, service and contractor users included. A monthly report from the platform lists any user able to log in without it, and the expected count is zero."
+    },
+    {
+      "event": "The instances had no network allow lists limiting where logins could come from.",
+      "criteria": [
+        "CC6.6"
+      ],
+      "failure_mode": "design",
+      "rationale": "The platform offered the restriction. The tenants were configured without it.",
+      "template_control": "Firewalls restrict inbound traffic.",
+      "custom_control": "A network policy limits data warehouse connections to company network ranges and named integration addresses. Changes to the policy need approval and raise an alert."
+    }
+  ],
+  "held": [
+    "The platform's own environment was not the way in."
+  ],
+  "auditor_questions": [
+    "For each SaaS platform holding production data, is MFA enforced at tenant level or left to each user?",
+    "Which complementary user entity controls in the vendor's report have we actually implemented?",
+    "Do contractors reach our systems from devices we can inspect?"
+  ],
+  "limits": "A vendor's clean report says nothing about how its customers configure their side. The controls that failed here were the customers' own, listed in vendor reports as user entity responsibilities.",
+  "sources": [
+    {
+      "label": "SecurityWeek on the Mandiant findings",
+      "url": "https://www.securityweek.com/snowflake-attacks-mandiant-links-data-breaches-to-infostealer-infections/"
+    }
+  ],
+  "changelog": [
+    {
+      "date": "2026-11-10",
+      "note": "Seed draft from public sources. Not yet reviewed."
+    }
+  ]
+}

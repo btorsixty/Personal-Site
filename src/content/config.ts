@@ -21,7 +21,7 @@ const projects = defineCollection({
     domain: z.enum(['professional', 'personal']),
     kind: z.string().optional(),
     repo: z.string().url().optional(),
-    link: z.string().url().optional(),
+    link: z.string().refine((s) => s.startsWith('/') || /^https?:\/\//.test(s), 'link must be a full URL or a path on this site').optional(),
     draft: z.boolean().default(false),
   }),
 });
